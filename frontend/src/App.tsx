@@ -722,7 +722,11 @@ function AuthPage() {
       setIsLoading(true)
       setMessage({ type: 'info', text: mode === 'login' ? 'Verifying your login details...' : 'Creating your secure account...' })
 
-      const endpoint = mode === 'login' ? 'http://localhost:8000/api/auth/login' : 'http://localhost:8000/api/auth/signup'
+      const API_BASE = import.meta.env.VITE_API_URL;
+
+      const endpoint = mode === 'login'
+        ? `${API_BASE}/auth/login`
+        : `${API_BASE}/auth/signup`;
       const payload = mode === 'login'
         ? { email, password }
         : { name, email, phone, password, confirm_password: password }
