@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Aditya Tuition Centre
 
 A premium educational notes platform for Classes 9–12.
@@ -38,3 +39,6 @@ A premium educational notes platform for Classes 9–12.
 ## Important
 
 This project uses a backend-first payment and access model; the frontend never determines payment success by itself.
+=======
+# Aditya-library
+>>>>>>> 422778c9eb571c828d26dbc99f5cb8e3cde10bba
