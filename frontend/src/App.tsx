@@ -633,13 +633,14 @@ function NotesPage() {
 
   const handleGenerateQuiz = async () => {
     if (!selectedChapter || !selectedSubject) return
+    const API_BASE = import.meta.env.VITE_API_URL || '/api'
     setQuizLoading(true)
     setQuizError('')
     setQuiz(null)
     setQuizAnswers({})
     setShowAnswerSheet(false)
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/quizzes/generate`, {
+      const response = await fetch(`${API_BASE}/quizzes/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

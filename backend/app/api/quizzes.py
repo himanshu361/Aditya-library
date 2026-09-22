@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Literal
 
 import httpx
@@ -46,6 +47,10 @@ def _extract_json(response_data: dict) -> dict:
         raise HTTPException(status_code=502, detail="Google returned an invalid quiz response.") from error
 
 
+def _normalise_name(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.casefold()).strip()
+
+
 @router.post("/quizzes/generate", response_model=QuizResponse)
 def generate_quiz(payload: QuizRequest, db: Session = Depends(get_db)):
     settings = get_settings()
@@ -60,10 +65,31 @@ def generate_quiz(payload: QuizRequest, db: Session = Depends(get_db)):
         Subject.class_id == school_class.id if school_class else False,
         Subject.subject_name == payload.subject_name,
     ).first()
-    chapter = db.query(Chapter).filter(
-        Chapter.subject_id == subject.id if subject else False,
-        Chapter.chapter_name == payload.chapter_name,
-    ).first()
+    if not subject and school_class:
+        subject = next(
+            (
+                candidate
+                for candidate in db.query(Subject).filter(Subject.class_id == school_class.id).all()
+                if _normalise_name(candidate.subject_name) == _normalise_name(payload.subject_name)
+            ),
+            None,
+        )
+
+    chapter = None
+    if subject:
+        chapter = db.query(Chapter).filter(
+            Chapter.subject_id == subject.id,
+            Chapter.chapter_name == payload.chapter_name,
+        ).first()
+        if not chapter:
+            chapter = next(
+                (
+                    candidate
+                    for candidate in db.query(Chapter).filter(Chapter.subject_id == subject.id).all()
+                    if _normalise_name(candidate.chapter_name) == _normalise_name(payload.chapter_name)
+                ),
+                None,
+            )
     if not chapter:
         raise HTTPException(status_code=404, detail="Chapter not found in the selected class and subject.")
 
