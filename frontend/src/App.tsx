@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import SecureNotesApp from './SecureNotesApp'
 import SecureReader from './SecureReader'
@@ -311,12 +311,16 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
 }
 
 function App() {
+  const location = useLocation()
+
   return (
-    <div className="min-h-screen bg-midnight text-white">
+    <div className="holo-shell min-h-screen bg-midnight text-white">
       <div className="relative overflow-hidden">
         <div className="hero-orb h-72 w-72 bg-sky-400 left-12 top-16" />
         <div className="hero-orb h-80 w-80 bg-violet-500 right-12 top-20" />
         <div className="hero-orb h-72 w-72 bg-emerald-400 left-1/3 bottom-0" />
+        <SolarSystem />
+        {location.pathname === '/' && <ChemistryLab />}
 
         <header className="glass sticky top-0 z-50 border-b border-white/10">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -328,6 +332,7 @@ function App() {
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
               <Link to="/login" className="rounded-full border border-sky-300/40 bg-sky-400/10 px-4 py-2">Login / Dashboard</Link>
+              <Link to="/admin/login" className="rounded-full border border-fuchsia-300/40 bg-fuchsia-400/10 px-4 py-2 text-fuchsia-100">Admin Login</Link>
             </div>
             <div className="md:hidden text-sm">Menu</div>
           </nav>
@@ -341,11 +346,27 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<AuthPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/login" element={<AdminPage />} />
             <Route path="/student/notes" element={<SecureNotesApp />} />
             <Route path="/student/notes/:chapterId/reader" element={<SecureReader />} />
           </Routes>
         </main>
       </div>
+    </div>
+  )
+}
+
+function SolarSystem() {
+  return (
+    <div className="solar-system" aria-hidden="true">
+      <div className="solar-system__stars" />
+      <div className="solar-system__sun"><span /></div>
+      <div className="solar-system__orbit solar-system__orbit--one"><i className="solar-system__planet solar-system__planet--one" /></div>
+      <div className="solar-system__orbit solar-system__orbit--two"><i className="solar-system__planet solar-system__planet--two" /></div>
+      <div className="solar-system__orbit solar-system__orbit--three"><i className="solar-system__planet solar-system__planet--three"><b /></i></div>
+      <div className="solar-system__orbit solar-system__orbit--four"><i className="solar-system__planet solar-system__planet--four" /></div>
+      <div className="solar-system__orbit solar-system__orbit--five"><i className="solar-system__planet solar-system__planet--five"><b /></i></div>
     </div>
   )
 }
@@ -363,6 +384,12 @@ function HomePage() {
             Premium educational notes, chapter-wise unlocks, and a student-first digital learning experience.
           </p>
           <p className="text-sky-200">Dehra Kuti, Garhmukteshwar</p>
+          <div className="max-w-lg rounded-2xl border border-emerald-300/25 bg-emerald-400/5 px-5 py-4 shadow-[0_0_24px_rgba(52,211,153,0.08)]">
+            <p className="text-xs uppercase tracking-[0.3em] text-emerald-200">Your next breakthrough starts here</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">
+              Every chapter you understand today builds the confidence you carry into tomorrow. Learn with focus, grow with consistency, and let your goals become your new standard.
+            </p>
+          </div>
         </div>
         <div className="flex flex-wrap gap-4">
           <Link to="/notes" className="rounded-full bg-gradient-to-r from-sky-400 to-violet-400 px-6 py-3 font-semibold text-slate-950 shadow-glow">Explore Notes</Link>
@@ -372,7 +399,7 @@ function HomePage() {
         </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="relative mx-auto aspect-square w-full max-w-xl">
+      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="holo-panel relative mx-auto aspect-square w-full max-w-xl">
         <div className="glass card-3d absolute inset-0 rounded-[2rem] border border-white/20" />
         <div className="absolute inset-8 rounded-[2rem] border border-sky-300/20 bg-gradient-to-br from-sky-400/10 via-slate-900/10 to-violet-500/10 p-8">
           <div className="grid h-full gap-4 md:grid-cols-2">
@@ -387,6 +414,110 @@ function HomePage() {
           </div>
         </div>
       </motion.div>
+
+    </section>
+  )
+}
+
+function ChemistryLab() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.6 }}
+      className="chemistry-lab"
+    >
+      <div className="chemistry-lab__heading">
+        <span className="text-xs uppercase tracking-[0.35em] text-emerald-200">Holographic Chemistry Lab</span>
+        <h2 className="mt-2 text-2xl font-black text-white">Explore. Experiment. Understand.</h2>
+      </div>
+      <div className="chemistry-lab__bottles" aria-hidden="true">
+        <div className="chemistry-bottle chemistry-bottle--cyan"><div className="chemistry-bottle__neck"><i /></div><div className="chemistry-bottle__liquid"><b /><b /><b /></div><span>H₂O</span></div>
+        <div className="chemistry-bottle chemistry-bottle--pink"><div className="chemistry-bottle__neck"><i /></div><div className="chemistry-bottle__liquid"><b /><b /><b /></div><span>NaCl</span></div>
+        <div className="chemistry-bottle chemistry-bottle--lime"><div className="chemistry-bottle__neck"><i /></div><div className="chemistry-bottle__liquid"><b /><b /><b /></div><span>DNA</span></div>
+      </div>
+    </motion.div>
+  )
+}
+
+function AdminPage() {
+  const [email, setEmail] = useState('admin@adityatuition.in')
+  const [password, setPassword] = useState('admin123')
+  const [token, setToken] = useState(() => localStorage.getItem('admin_access_token') || '')
+  const [stats, setStats] = useState({ users: 0, payments: 0 })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const API_BASE = import.meta.env.VITE_API_URL || '/api'
+
+  const loadAdminSession = async (accessToken: string) => {
+    const headers = { Authorization: `Bearer ${accessToken}` }
+    const [usersResponse, paymentsResponse] = await Promise.all([
+      fetch(`${API_BASE}/admin/users`, { headers }),
+      fetch(`${API_BASE}/admin/payments`, { headers }),
+    ])
+    if (!usersResponse.ok || !paymentsResponse.ok) throw new Error('Admin access required.')
+    const users = await usersResponse.json()
+    const payments = await paymentsResponse.json()
+    setStats({ users: users.length, payments: payments.length })
+  }
+
+  useEffect(() => {
+    if (!token) return
+    setLoading(true)
+    loadAdminSession(token).catch(() => {
+      localStorage.removeItem('admin_access_token')
+      setToken('')
+    }).finally(() => setLoading(false))
+  }, [token])
+
+  const handleLogin = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const response = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.detail || 'Invalid admin credentials')
+      localStorage.setItem('admin_access_token', data.access_token)
+      setToken(data.access_token)
+    } catch (loginError) {
+      setError(loginError instanceof Error ? loginError.message : 'Admin login failed')
+      setLoading(false)
+    }
+  }
+
+  if (token) {
+    return (
+      <section className="mx-auto max-w-4xl space-y-8 py-10">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div><p className="text-xs uppercase tracking-[0.3em] text-fuchsia-200">Protected session</p><h1 className="mt-2 text-4xl font-black">Admin Command Centre</h1></div>
+          <button type="button" onClick={() => { localStorage.removeItem('admin_access_token'); setToken('') }} className="rounded-full border border-white/15 px-4 py-2 text-sm">Sign out</button>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          <div className="glass card-3d rounded-3xl p-6"><p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Users</p><p className="mt-5 text-4xl font-black">{stats.users}</p></div>
+          <div className="glass card-3d rounded-3xl p-6"><p className="text-xs uppercase tracking-[0.25em] text-fuchsia-200">Payments</p><p className="mt-5 text-4xl font-black">{stats.payments}</p></div>
+          <div className="glass card-3d rounded-3xl p-6"><p className="text-xs uppercase tracking-[0.25em] text-emerald-200">Session</p><p className="mt-5 text-xl font-bold text-emerald-300">{loading ? 'Syncing...' : 'Verified'}</p></div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="mx-auto max-w-lg py-10">
+      <div className="glass rounded-[2rem] p-8">
+        <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-200">Private access</p>
+        <h1 className="mt-3 text-3xl font-black">Admin Login</h1>
+        <div className="mt-7 space-y-4">
+          <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" placeholder="Admin email" className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none focus:border-fuchsia-300/60" />
+          <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Password" onKeyDown={(event) => { if (event.key === 'Enter') void handleLogin() }} className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none focus:border-fuchsia-300/60" />
+          <button type="button" onClick={() => void handleLogin()} disabled={loading} className="w-full rounded-2xl bg-gradient-to-r from-fuchsia-300 to-cyan-300 px-4 py-3 font-bold text-slate-950 disabled:opacity-60">{loading ? 'Verifying...' : 'Enter Admin'}</button>
+        </div>
+        <p className="mt-5 text-xs text-slate-400">Default ID: admin@adityatuition.in · Password: admin123</p>
+        {error && <p className="mt-4 rounded-2xl border border-rose-300/30 bg-rose-400/10 p-3 text-sm text-rose-100">{error}</p>}
+      </div>
     </section>
   )
 }
@@ -855,6 +986,9 @@ function AuthPage() {
             {message.text}
           </div>
         )}
+        <div className="mt-5 text-center text-sm text-slate-400">
+          <Link to="/admin" className="text-fuchsia-200 transition hover:text-fuchsia-100">Admin session login</Link>
+        </div>
       </motion.div>
     </section>
   )
