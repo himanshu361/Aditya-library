@@ -589,6 +589,7 @@ function NotesPage() {
   const [quizDifficulty, setQuizDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium')
   const [quizAnswers, setQuizAnswers] = useState<Record<number, string>>({})
   const [showAnswerSheet, setShowAnswerSheet] = useState(false)
+  const [quizSubmitted, setQuizSubmitted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -642,6 +643,7 @@ function NotesPage() {
     setQuiz(null)
     setQuizAnswers({})
     setShowAnswerSheet(false)
+    setQuizSubmitted(false)
     try {
       const response = await fetch(`${API_BASE}/quizzes/generate`, {
         method: 'POST',
@@ -664,6 +666,10 @@ function NotesPage() {
       setQuizLoading(false)
     }
   }
+
+  const quizScore = quiz
+    ? quiz.questions.reduce((score, question, index) => score + (quizAnswers[index] === question.answer ? 1 : 0), 0)
+    : 0
 
   return (
     <section className="space-y-8 py-10">
@@ -906,11 +912,18 @@ function NotesPage() {
               <button type="button" onClick={() => { setQuiz(null); setSelectedQuizChapter(null) }} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
             </div>
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
-              <div className="text-sm text-slate-300">25 questions · Select an option to check your response.</div>
+              <div className="text-sm text-slate-300">25 questions · Select answers, then submit to check your score.</div>
               <button type="button" onClick={() => setShowAnswerSheet((current) => !current)} className="rounded-xl border border-emerald-300/40 bg-emerald-400/10 px-3 py-2 text-sm font-semibold text-emerald-100">
                 {showAnswerSheet ? 'Hide Answer Sheet' : 'Show Answer Sheet'}
               </button>
             </div>
+            {quizSubmitted && (
+              <div className="mt-5 rounded-2xl border border-cyan-300/30 bg-cyan-400/10 p-5 text-center">
+                <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Quiz Result</p>
+                <p className="mt-2 text-3xl font-black text-white">{quizScore} / {quiz.questions.length}</p>
+                <p className="mt-1 text-sm text-slate-300">Gemini answer key ke basis par aapka score check kiya gaya.</p>
+              </div>
+            )}
             {showAnswerSheet && (
               <div className="mt-5 rounded-2xl border border-emerald-300/20 bg-emerald-400/5 p-5">
                 <h4 className="text-lg font-bold text-emerald-100">Answer Sheet</h4>
@@ -933,8 +946,8 @@ function NotesPage() {
                     <div className="mt-4 grid gap-2 md:grid-cols-2">
                       {question.options.map((option) => {
                         const isSelected = selectedAnswer === option
-                        const isCorrect = selectedAnswer && option === question.answer
-                        const isWrong = isSelected && option !== question.answer
+                        const isCorrect = quizSubmitted && option === question.answer
+                        const isWrong = quizSubmitted && isSelected && option !== question.answer
                         return (
                           <button key={option} type="button" onClick={() => setQuizAnswers((current) => ({ ...current, [index]: option }))} className={`rounded-xl border px-3 py-2 text-left text-sm ${isCorrect ? 'border-emerald-300/60 bg-emerald-400/15 text-emerald-100' : isWrong ? 'border-rose-300/60 bg-rose-400/15 text-rose-100' : isSelected ? 'border-cyan-300/60 bg-cyan-400/15' : 'border-white/10 bg-white/5'}`}>
                             {option}
@@ -942,11 +955,16 @@ function NotesPage() {
                         )
                       })}
                     </div>
-                    {selectedAnswer && <p className="mt-4 text-sm text-slate-300"><span className="font-semibold text-cyan-200">Explanation:</span> {question.explanation}</p>}
+                    {quizSubmitted && <p className="mt-4 text-sm text-slate-300"><span className="font-semibold text-cyan-200">Explanation:</span> {question.explanation}</p>}
                   </div>
                 )
               })}
             </div>
+            {!quizSubmitted && (
+              <button type="button" onClick={() => setQuizSubmitted(true)} className="mt-6 w-full rounded-xl bg-emerald-300 px-4 py-3 font-bold text-slate-950">
+                Submit Quiz and Check Answers
+              </button>
+            )}
           </div>
         </div>
       )}
