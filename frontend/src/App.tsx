@@ -646,6 +646,7 @@ function NotesPage() {
         body: JSON.stringify({
           class_number: selectedClass,
           subject_name: selectedSubject,
+          chapter_number: selectedChapter.number,
           chapter_name: selectedChapter.title,
           question_count: 25,
           difficulty: quizDifficulty,

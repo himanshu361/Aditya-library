@@ -20,6 +20,7 @@ router = APIRouter()
 class QuizRequest(BaseModel):
     class_number: int = Field(..., ge=9, le=12)
     subject_name: str = Field(..., min_length=1, max_length=120)
+    chapter_number: int = Field(..., ge=1)
     chapter_name: str = Field(..., min_length=1, max_length=200)
     question_count: int = Field(default=25, ge=25, le=25)
     difficulty: Literal["easy", "medium", "hard"] = "medium"
@@ -79,8 +80,13 @@ def generate_quiz(payload: QuizRequest, db: Session = Depends(get_db)):
     if subject:
         chapter = db.query(Chapter).filter(
             Chapter.subject_id == subject.id,
-            Chapter.chapter_name == payload.chapter_name,
+            Chapter.chapter_number == payload.chapter_number,
         ).first()
+        if not chapter:
+            chapter = db.query(Chapter).filter(
+                Chapter.subject_id == subject.id,
+                Chapter.chapter_name == payload.chapter_name,
+            ).first()
         if not chapter:
             chapter = next(
                 (
