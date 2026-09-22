@@ -585,8 +585,8 @@ function NotesPage() {
   const [quizLoading, setQuizLoading] = useState(false)
   const [quizError, setQuizError] = useState('')
   const [quizDifficulty, setQuizDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium')
-  const [quizQuestionCount, setQuizQuestionCount] = useState(5)
   const [quizAnswers, setQuizAnswers] = useState<Record<number, string>>({})
+  const [showAnswerSheet, setShowAnswerSheet] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -637,6 +637,7 @@ function NotesPage() {
     setQuizError('')
     setQuiz(null)
     setQuizAnswers({})
+    setShowAnswerSheet(false)
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/quizzes/generate`, {
         method: 'POST',
@@ -645,7 +646,7 @@ function NotesPage() {
           class_number: selectedClass,
           subject_name: selectedSubject,
           chapter_name: selectedChapter.title,
-          question_count: quizQuestionCount,
+          question_count: 25,
           difficulty: quizDifficulty,
         }),
       })
@@ -690,19 +691,30 @@ function NotesPage() {
           <h3 className="text-xl font-semibold">Select Subject</h3>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {subjectList.map((subject) => (
-              <button
-                key={subject}
-                type="button"
-                onClick={() => {
-                  setSelectedSubject(subject)
-                  setSelectedChapter(null)
-                }}
-                className={`glass card-3d rounded-3xl p-5 text-left ${selectedSubject === subject ? 'border-violet-300/40 ring-1 ring-violet-300/40' : ''}`}
-              >
-                <div className="text-xs uppercase tracking-[0.25em] text-violet-200">{subject}</div>
-                <div className="mt-8 text-2xl font-bold">{(notesData[selectedClass]?.[subject] ?? []).length}</div>
-                <div className="mt-2 text-sm text-slate-300">chapters</div>
-              </button>
+              <div key={subject} className={`glass card-3d rounded-3xl p-5 ${selectedSubject === subject ? 'border-violet-300/40 ring-1 ring-violet-300/40' : ''}`}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedSubject(subject)
+                    setSelectedChapter(null)
+                  }}
+                  className="w-full text-left"
+                >
+                  <div className="text-xs uppercase tracking-[0.25em] text-violet-200">{subject}</div>
+                  <div className="mt-8 text-2xl font-bold">{(notesData[selectedClass]?.[subject] ?? []).length}</div>
+                  <div className="mt-2 text-sm text-slate-300">chapters</div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedSubject(subject)
+                    setSelectedChapter(null)
+                  }}
+                  className="mt-5 w-full rounded-xl border border-cyan-300/30 bg-cyan-400/10 px-3 py-2 text-sm font-semibold text-cyan-100"
+                >
+                  Quiz for this subject
+                </button>
+              </div>
             ))}
           </div>
         </div>
@@ -722,7 +734,10 @@ function NotesPage() {
                 <div className="text-xs uppercase tracking-[0.25em] text-sky-200">Chapter {chapter.number}</div>
                 <h4 className="mt-6 text-xl font-bold">{chapter.title}</h4>
                 <p className="mt-2 text-sm text-slate-300">{chapter.description}</p>
-                <div className="mt-5 text-sm font-semibold text-emerald-300">₹{chapter.price}</div>
+                <div className="mt-5 flex items-center justify-between gap-3 text-sm">
+                  <span className="font-semibold text-emerald-300">₹{chapter.price}</span>
+                  <span className="font-semibold text-cyan-200">25-question quiz</span>
+                </div>
               </button>
             ))}
           </div>
@@ -815,13 +830,7 @@ function NotesPage() {
                   <option value="hard">Hard</option>
                 </select>
               </label>
-              <label className="text-sm text-slate-300">Questions
-                <select value={quizQuestionCount} onChange={(event) => setQuizQuestionCount(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2 text-white">
-                  <option value={5}>5 questions</option>
-                  <option value={10}>10 questions</option>
-                  <option value={15}>15 questions</option>
-                </select>
-              </label>
+              <div className="rounded-xl border border-cyan-300/20 bg-cyan-400/5 px-3 py-2 text-sm text-cyan-100">Exactly 25 questions from this chapter</div>
             </div>
           </div>
         </div>
@@ -837,6 +846,25 @@ function NotesPage() {
               </div>
               <button type="button" onClick={() => setQuiz(null)} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
             </div>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+              <div className="text-sm text-slate-300">25 questions · Select an option to check your response.</div>
+              <button type="button" onClick={() => setShowAnswerSheet((current) => !current)} className="rounded-xl border border-emerald-300/40 bg-emerald-400/10 px-3 py-2 text-sm font-semibold text-emerald-100">
+                {showAnswerSheet ? 'Hide Answer Sheet' : 'Show Answer Sheet'}
+              </button>
+            </div>
+            {showAnswerSheet && (
+              <div className="mt-5 rounded-2xl border border-emerald-300/20 bg-emerald-400/5 p-5">
+                <h4 className="text-lg font-bold text-emerald-100">Answer Sheet</h4>
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  {quiz.questions.map((question, index) => (
+                    <div key={`answer-${index}`} className="rounded-xl border border-white/10 bg-slate-950/30 p-3 text-sm">
+                      <div className="font-semibold">{index + 1}. {question.answer}</div>
+                      <div className="mt-1 text-slate-300">{question.explanation}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="mt-6 space-y-5">
               {quiz.questions.map((question, index) => {
                 const selectedAnswer = quizAnswers[index]

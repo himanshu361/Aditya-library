@@ -20,7 +20,7 @@ class QuizRequest(BaseModel):
     class_number: int = Field(..., ge=9, le=12)
     subject_name: str = Field(..., min_length=1, max_length=120)
     chapter_name: str = Field(..., min_length=1, max_length=200)
-    question_count: int = Field(default=5, ge=3, le=15)
+    question_count: int = Field(default=25, ge=25, le=25)
     difficulty: Literal["easy", "medium", "hard"] = "medium"
 
 
@@ -67,7 +67,7 @@ def generate_quiz(payload: QuizRequest, db: Session = Depends(get_db)):
     if not chapter:
         raise HTTPException(status_code=404, detail="Chapter not found in the selected class and subject.")
 
-    prompt = f"""Create a {payload.question_count}-question multiple-choice quiz for an Indian school student.
+    prompt = f"""Create exactly 25 multiple-choice questions for an Indian school student.
 Class: {payload.class_number}
 Subject: {payload.subject_name}
 Chapter: {chapter.chapter_name}
@@ -75,7 +75,7 @@ Difficulty: {payload.difficulty}
 
 Return only valid JSON with this exact shape:
 {{"questions":[{{"question":"...","options":["A","B","C","D"],"answer":"the exact correct option text","explanation":"brief explanation"}}]}}
-Every question must have exactly four distinct options, one correct answer, and an explanation grounded in the chapter. Do not include markdown or extra keys."""
+Every question must have exactly four distinct options, one correct answer, and an explanation grounded in the chapter. Cover different concepts from the chapter and avoid duplicate questions. Do not include markdown or extra keys."""
 
     endpoint = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
