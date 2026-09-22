@@ -405,7 +405,7 @@ def seed_data():
 
 seed_data()
 
-app = FastAPI(title="Aditya Tuition Centre API", version="1.0.0")
+app = FastAPI(title="Aditya Tuition Centre API", version="1.0.1")
 
 app.add_middleware(
     CORSMiddleware,

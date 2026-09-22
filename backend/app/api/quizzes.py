@@ -17,6 +17,11 @@ from fastapi import Depends
 router = APIRouter()
 
 
+@router.get("/quizzes/health")
+def quiz_health():
+    return {"status": "ok", "service": "quiz-generator"}
+
+
 class QuizRequest(BaseModel):
     class_number: int = Field(..., ge=9, le=12)
     subject_name: str = Field(..., min_length=1, max_length=120)
