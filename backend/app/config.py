@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     google_client_id: str = "placeholder-client-id"
     google_client_secret: str = "placeholder-client-secret"
     google_service_account: str = "placeholder-service-account"
+    google_gemini_api_key: str = ""
+    google_gemini_model: str = "gemini-2.0-flash"
     payment_provider_key: str = "demo_key"
     payment_provider_secret: str = "demo_secret"
 

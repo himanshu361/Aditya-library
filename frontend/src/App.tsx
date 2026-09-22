@@ -32,17 +32,21 @@ const classDetails = {
 const notesData: Record<number, Record<string, { number: number; title: string; description: string; price: number }[]>> = {
   9: {
     Physics: [
-      { number: 1, title: 'Motion', description: 'Basics of motion, displacement, velocity and acceleration.', price: 269 },
-      { number: 2, title: 'Force and Laws of Motion', description: 'Newton’s laws with numerical examples and conceptual notes.', price: 269 },
-      { number: 3, title: 'Gravitation', description: 'Gravity, free fall and universal law of gravitation.', price: 269 },
-      { number: 4, title: 'Work and Energy', description: 'Energy, power, work and conservation principles.', price: 269 },
-      { number: 5, title: 'Sound', description: 'Wave motion, sound production, propagation and characteristics.', price: 269 },
+      { number: 1, title: 'Basic Physical Quantities and Measurement', description: 'Units, measurements and basic physical quantities.', price: 269 },
+      { number: 2, title: 'Motion', description: 'Basics of motion, displacement, velocity and acceleration.', price: 269 },
+      { number: 3, title: 'Force and Laws of Motion', description: 'Newton’s laws with numerical examples and conceptual notes.', price: 269 },
+      { number: 4, title: 'Gravitation', description: 'Gravity, free fall and universal law of gravitation.', price: 269 },
+      { number: 5, title: 'Work and Energy', description: 'Energy, power, work and conservation principles.', price: 269 },
+      { number: 6, title: 'Sound', description: 'Wave motion, sound production, propagation and characteristics.', price: 269 },
     ],
     Chemistry: [
-      { number: 1, title: 'Matter in Our Surroundings', description: 'States of matter and physical properties.', price: 269 },
+      { number: 1, title: 'Matter and Its Nature', description: 'States of matter and physical properties.', price: 269 },
       { number: 2, title: 'Is Matter Around Us Pure?', description: 'Elements, compounds, mixtures and separation techniques.', price: 269 },
       { number: 3, title: 'Atoms and Molecules', description: 'Atomic theory, laws of chemical combination and molecules.', price: 269 },
       { number: 4, title: 'Structure of the Atom', description: 'Atomic models, subatomic particles and electronic structure.', price: 269 },
+      { number: 5, title: 'Chemical Changes and Reactions', description: 'Recognise and explain common chemical changes and reactions.', price: 269 },
+      { number: 6, title: 'Elements and Compounds', description: 'Classify substances and compare elements with compounds.', price: 269 },
+      { number: 7, title: 'Basic Chemical Calculations', description: 'Apply introductory calculations to chemical quantities.', price: 269 },
     ],
     Mathematics: [
       { number: 1, title: 'Number Systems', description: 'Real numbers, irrational numbers and decimal expansion.', price: 269 },
@@ -58,6 +62,7 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
       { number: 11, title: 'Surface Areas and Volumes', description: 'Surface area and volume of solids.', price: 269 },
       { number: 12, title: 'Statistics', description: 'Mean, median, mode and data interpretation.', price: 269 },
       { number: 13, title: 'Probability', description: 'Basic probability and event analysis.', price: 269 },
+      { number: 14, title: 'Mathematical Reasoning, Modelling and Applications', description: 'Use mathematical reasoning and models in everyday applications.', price: 269 },
     ],
     'English - Beehive - Prose': [
       { number: 1, title: 'The Fun They Had', description: 'A story about futuristic schooling and imagination.', price: 269 },
@@ -92,6 +97,17 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
       { number: 7, title: 'The Last Leaf', description: 'Hope, art and friendship in a difficult season.', price: 269 },
       { number: 8, title: 'A House Is Not a Home', description: 'Financial hard times and family struggles.', price: 269 },
       { number: 9, title: 'The Beggar', description: 'A story on dignity and societal perception.', price: 269 },
+    ],
+    'English - Core Skills': [
+      { number: 1, title: 'Reading Comprehension', description: 'Read, understand and interpret unseen texts.', price: 269 },
+      { number: 2, title: 'Grammar', description: 'Build accurate grammar for school and examinations.', price: 269 },
+      { number: 3, title: 'Writing', description: 'Organise clear and effective written responses.', price: 269 },
+      { number: 4, title: 'Literature', description: 'Study themes, characters and literary techniques.', price: 269 },
+      { number: 5, title: 'Vocabulary', description: 'Develop word knowledge and contextual usage.', price: 269 },
+      { number: 6, title: 'Language Skills', description: 'Strengthen integrated listening, speaking, reading and writing.', price: 269 },
+    ],
+    'English - Kaveri': [
+      { number: 1, title: 'Kaveri Textbook', description: 'Chapter-wise notes and revision for the Kaveri textbook.', price: 269 },
     ],
   },
   10: {
@@ -159,6 +175,17 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
       { number: 7, title: 'The Necklace', description: 'Materialism, irony and consequences.', price: 269 },
       { number: 8, title: 'Bholi', description: 'Empowerment, education and self-worth.', price: 269 },
       { number: 9, title: 'The Book That Saved the Earth', description: 'Humour and imaginative alien comedy.', price: 269 },
+    ],
+    'English - Core Skills': [
+      { number: 1, title: 'Reading Comprehension', description: 'Read, understand and interpret unseen texts.', price: 269 },
+      { number: 2, title: 'Grammar', description: 'Build accurate grammar for school and examinations.', price: 269 },
+      { number: 3, title: 'Writing', description: 'Organise clear and effective written responses.', price: 269 },
+      { number: 4, title: 'Literature', description: 'Study themes, characters and literary techniques.', price: 269 },
+      { number: 5, title: 'Vocabulary', description: 'Develop word knowledge and contextual usage.', price: 269 },
+      { number: 6, title: 'Language Skills', description: 'Strengthen integrated listening, speaking, reading and writing.', price: 269 },
+    ],
+    'English - Kaveri': [
+      { number: 1, title: 'Kaveri Textbook', description: 'Chapter-wise notes and revision for the Kaveri textbook.', price: 269 },
     ],
   },
   11: {
@@ -234,6 +261,16 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
       { number: 7, title: 'Birth', description: 'A narrative exploring new life and parenthood.', price: 269 },
       { number: 8, title: 'The Tale of Melon City', description: 'Political satire and absurd narrative.', price: 269 },
     ],
+    'English - Core Skills': [
+      { number: 1, title: 'Unseen Passage and Reading Skills', description: 'Build comprehension, interpretation and analysis skills.', price: 269 },
+      { number: 2, title: 'Case-Based Factual Passage', description: 'Read and interpret data-rich factual texts.', price: 269 },
+      { number: 3, title: 'Vocabulary and Note-Making', description: 'Extract key ideas and organise useful notes.', price: 269 },
+      { number: 4, title: 'Summary Writing', description: 'Condense passages into accurate, clear summaries.', price: 269 },
+      { number: 5, title: 'Tenses and Clauses', description: 'Apply core grammar structures accurately.', price: 269 },
+      { number: 6, title: 'Re-ordering and Transformation', description: 'Practise sentence transformation and re-ordering.', price: 269 },
+      { number: 7, title: 'Classified Advertisement', description: 'Write concise, well-structured classified advertisements.', price: 269 },
+      { number: 8, title: 'Creative Writing Tasks', description: 'Prepare prescribed creative writing formats.', price: 269 },
+    ],
   },
   12: {
     Physics: [
@@ -307,7 +344,22 @@ const notesData: Record<number, Record<string, { number: number; title: string; 
       { number: 7, title: 'Evans Tries an O-Level', description: 'Humour and prison escape plot.', price: 269 },
       { number: 8, title: 'Memories of Childhood', description: 'Reflections on childhood and injustice.', price: 269 },
     ],
+    'English - Core Skills': [
+      { number: 1, title: 'Unseen and Case-Based Reading', description: 'Build comprehension and interpretation skills.', price: 269 },
+      { number: 2, title: 'Analysis, Inference and Vocabulary', description: 'Analyse texts and infer meaning from context.', price: 269 },
+      { number: 3, title: 'Notice Writing', description: 'Write concise and complete notices.', price: 269 },
+      { number: 4, title: 'Invitation and Reply', description: 'Prepare formal invitations and appropriate replies.', price: 269 },
+      { number: 5, title: 'Letter Writing', description: 'Practise prescribed formal letter formats.', price: 269 },
+      { number: 6, title: 'Article and Report Writing', description: 'Develop structured articles and reports.', price: 269 },
+    ],
   },
+}
+
+type GeneratedQuiz = {
+  chapter_name: string
+  subject_name: string
+  difficulty: string
+  questions: { question: string; options: string[]; answer: string; explanation: string }[]
 }
 
 function App() {
@@ -528,6 +580,12 @@ function NotesPage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null)
   const [selectedChapter, setSelectedChapter] = useState<{ number: number; title: string; description: string; price: number } | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<'idle' | 'paying' | 'success'>('idle')
+  const [quiz, setQuiz] = useState<GeneratedQuiz | null>(null)
+  const [quizLoading, setQuizLoading] = useState(false)
+  const [quizError, setQuizError] = useState('')
+  const [quizDifficulty, setQuizDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium')
+  const [quizQuestionCount, setQuizQuestionCount] = useState(5)
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, string>>({})
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -570,6 +628,34 @@ function NotesPage() {
 
   const handlePaymentSuccess = () => {
     setPaymentStatus('success')
+  }
+
+  const handleGenerateQuiz = async () => {
+    if (!selectedChapter || !selectedSubject) return
+    setQuizLoading(true)
+    setQuizError('')
+    setQuiz(null)
+    setQuizAnswers({})
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/quizzes/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          class_number: selectedClass,
+          subject_name: selectedSubject,
+          chapter_name: selectedChapter.title,
+          question_count: quizQuestionCount,
+          difficulty: quizDifficulty,
+        }),
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.detail || 'Quiz generation failed.')
+      setQuiz(data)
+    } catch (error) {
+      setQuizError(error instanceof Error ? error.message : 'Quiz generation failed.')
+    } finally {
+      setQuizLoading(false)
+    }
   }
 
   return (
@@ -715,6 +801,63 @@ function NotesPage() {
                 handlePaymentSuccess()
                 handleOpenSecureNotes()
               }} className="rounded-full bg-gradient-to-r from-sky-400 to-violet-400 px-4 py-2 font-semibold text-slate-950">Open Secure Notes</button>
+              <button type="button" onClick={() => void handleGenerateQuiz()} disabled={quizLoading} className="rounded-full border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 font-semibold text-cyan-100 disabled:opacity-60">
+                {quizLoading ? 'Generating...' : 'Generate Google Quiz'}
+              </button>
+            </div>
+            {quizError && <p className="mt-4 rounded-2xl border border-rose-300/30 bg-rose-400/10 p-3 text-sm text-rose-100">{quizError}</p>}
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <label className="text-sm text-slate-300">Difficulty
+                <select value={quizDifficulty} onChange={(event) => setQuizDifficulty(event.target.value as typeof quizDifficulty)} className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2 text-white">
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </label>
+              <label className="text-sm text-slate-300">Questions
+                <select value={quizQuestionCount} onChange={(event) => setQuizQuestionCount(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2 text-white">
+                  <option value={5}>5 questions</option>
+                  <option value={10}>10 questions</option>
+                  <option value={15}>15 questions</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {quiz && (
+        <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-950/90 p-4 backdrop-blur-sm">
+          <div className="mx-auto my-8 max-w-3xl rounded-[2rem] border border-cyan-300/20 bg-slate-900 p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Google generated quiz · {quiz.difficulty}</p>
+                <h3 className="mt-2 text-2xl font-bold">{quiz.chapter_name}</h3>
+              </div>
+              <button type="button" onClick={() => setQuiz(null)} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
+            </div>
+            <div className="mt-6 space-y-5">
+              {quiz.questions.map((question, index) => {
+                const selectedAnswer = quizAnswers[index]
+                return (
+                  <div key={`${index}-${question.question}`} className="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                    <p className="font-semibold">{index + 1}. {question.question}</p>
+                    <div className="mt-4 grid gap-2 md:grid-cols-2">
+                      {question.options.map((option) => {
+                        const isSelected = selectedAnswer === option
+                        const isCorrect = selectedAnswer && option === question.answer
+                        const isWrong = isSelected && option !== question.answer
+                        return (
+                          <button key={option} type="button" onClick={() => setQuizAnswers((current) => ({ ...current, [index]: option }))} className={`rounded-xl border px-3 py-2 text-left text-sm ${isCorrect ? 'border-emerald-300/60 bg-emerald-400/15 text-emerald-100' : isWrong ? 'border-rose-300/60 bg-rose-400/15 text-rose-100' : isSelected ? 'border-cyan-300/60 bg-cyan-400/15' : 'border-white/10 bg-white/5'}`}>
+                            {option}
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {selectedAnswer && <p className="mt-4 text-sm text-slate-300"><span className="font-semibold text-cyan-200">Explanation:</span> {question.explanation}</p>}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

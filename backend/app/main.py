@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import admin_router, auth_router, chapters_router, classes_router, notes_router, payments_router, users_router
+from app.api import admin_router, auth_router, chapters_router, classes_router, notes_router, payments_router, quizzes_router, users_router
 from app.auth import hash_password
 from app.database import SessionLocal, Base, engine, ensure_sqlite_compatibility
 from app.models.access_log import AccessLog
@@ -18,6 +18,7 @@ ensure_sqlite_compatibility()
 CHAPTER_CATALOG = {
     9: {
         "Physics": [
+            "Basic Physical Quantities and Measurement",
             "Motion",
             "Force and Laws of Motion",
             "Gravitation",
@@ -25,10 +26,13 @@ CHAPTER_CATALOG = {
             "Sound",
         ],
         "Chemistry": [
-            "Matter in Our Surroundings",
+            "Matter and Its Nature",
             "Is Matter Around Us Pure?",
             "Atoms and Molecules",
             "Structure of the Atom",
+            "Chemical Changes and Reactions",
+            "Elements and Compounds",
+            "Basic Chemical Calculations",
         ],
         "Mathematics": [
             "Number Systems",
@@ -44,6 +48,18 @@ CHAPTER_CATALOG = {
             "Surface Areas and Volumes",
             "Statistics",
             "Probability",
+            "Mathematical Reasoning, Modelling and Applications",
+        ],
+        "English - Core Skills": [
+            "Reading Comprehension",
+            "Grammar",
+            "Writing",
+            "Literature",
+            "Vocabulary",
+            "Language Skills",
+        ],
+        "English - Kaveri": [
+            "Kaveri Textbook",
         ],
         "English - Beehive - Prose": [
             "The Fun They Had",
@@ -146,6 +162,17 @@ CHAPTER_CATALOG = {
             "Bholi",
             "The Book That Saved the Earth",
         ],
+        "English - Core Skills": [
+            "Reading Comprehension",
+            "Grammar",
+            "Writing",
+            "Literature",
+            "Vocabulary",
+            "Language Skills",
+        ],
+        "English - Kaveri": [
+            "Kaveri Textbook",
+        ],
     },
     11: {
         "Physics": [
@@ -220,6 +247,17 @@ CHAPTER_CATALOG = {
             "Birth",
             "The Tale of Melon City",
         ],
+        "English - Core Skills": [
+            "Unseen Passage and Reading Skills",
+            "Case-Based Factual Passage",
+            "Comprehension, Interpretation and Inference",
+            "Vocabulary and Note-Making",
+            "Summary Writing",
+            "Tenses and Clauses",
+            "Re-ordering and Transformation",
+            "Classified Advertisement",
+            "Creative Writing Tasks",
+        ],
     },
     12: {
         "Physics": [
@@ -293,6 +331,15 @@ CHAPTER_CATALOG = {
             "Evans Tries an O-Level",
             "Memories of Childhood",
         ],
+        "English - Core Skills": [
+            "Unseen and Case-Based Reading",
+            "Comprehension, Analysis and Inference",
+            "Vocabulary",
+            "Notice Writing",
+            "Invitation and Reply",
+            "Letter Writing",
+            "Article and Report Writing",
+        ],
     },
 }
 
@@ -300,30 +347,44 @@ CHAPTER_CATALOG = {
 def seed_data():
     db = SessionLocal()
     try:
-        if db.query(SchoolClass).count() == 0:
-            for class_number, subject_map in CHAPTER_CATALOG.items():
+        for class_number, subject_map in CHAPTER_CATALOG.items():
+            school_class = db.query(SchoolClass).filter(SchoolClass.class_number == class_number).first()
+            if school_class is None:
                 school_class = SchoolClass(class_number=class_number, class_name=f"Class {class_number}")
                 db.add(school_class)
                 db.commit()
                 db.refresh(school_class)
 
-                for subject_name, chapter_names in subject_map.items():
+            for subject_name, chapter_names in subject_map.items():
+                subject = db.query(Subject).filter(
+                    Subject.class_id == school_class.id,
+                    Subject.subject_name == subject_name,
+                ).first()
+                if subject is None:
                     subject = Subject(class_id=school_class.id, subject_name=subject_name)
                     db.add(subject)
                     db.commit()
                     db.refresh(subject)
 
-                    for chapter_number, chapter_name in enumerate(chapter_names, start=1):
-                        chapter = Chapter(
-                            subject_id=subject.id,
-                            chapter_number=chapter_number,
-                            chapter_name=chapter_name,
-                            description=f"{subject_name} chapter on {chapter_name} for Class {class_number}.",
-                            google_drive_file_id=f"drive_{class_number}_{subject_name.lower()}_{chapter_number}",
-                            price=269,
-                            status="active",
-                        )
-                        db.add(chapter)
+                existing_names = {
+                    chapter.chapter_name
+                    for chapter in db.query(Chapter).filter(Chapter.subject_id == subject.id).all()
+                }
+                next_number = db.query(Chapter).filter(Chapter.subject_id == subject.id).count() + 1
+                for chapter_name in chapter_names:
+                    if chapter_name in existing_names:
+                        continue
+                    chapter = Chapter(
+                        subject_id=subject.id,
+                        chapter_number=next_number,
+                        chapter_name=chapter_name,
+                        description=f"{subject_name} chapter on {chapter_name} for Class {class_number}.",
+                        google_drive_file_id=f"drive_{class_number}_{subject_name.lower()}_{next_number}",
+                        price=269,
+                        status="active",
+                    )
+                    db.add(chapter)
+                    next_number += 1
             db.commit()
 
         admin = db.query(User).filter(User.email == "admin@adityatuition.in").first()
@@ -359,6 +420,7 @@ app.include_router(classes_router, prefix="/api", tags=["classes"])
 app.include_router(chapters_router, prefix="/api", tags=["chapters"])
 app.include_router(notes_router, prefix="/api", tags=["notes"])
 app.include_router(payments_router, prefix="/api", tags=["payments"])
+app.include_router(quizzes_router, prefix="/api", tags=["quizzes"])
 app.include_router(users_router, prefix="/api", tags=["users"])
 app.include_router(admin_router, prefix="/api/admin", tags=["admin"])
 
