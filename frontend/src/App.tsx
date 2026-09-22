@@ -579,7 +579,9 @@ function NotesPage() {
   const navigate = useNavigate()
   const [selectedClass, setSelectedClass] = useState<number>(9)
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null)
+  const [quizSubject, setQuizSubject] = useState<string | null>(null)
   const [selectedChapter, setSelectedChapter] = useState<{ number: number; title: string; description: string; price: number } | null>(null)
+  const [selectedQuizChapter, setSelectedQuizChapter] = useState<{ number: number; title: string; description: string; price: number } | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<'idle' | 'paying' | 'success'>('idle')
   const [quiz, setQuiz] = useState<GeneratedQuiz | null>(null)
   const [quizLoading, setQuizLoading] = useState(false)
@@ -602,6 +604,7 @@ function NotesPage() {
 
   const subjectList = Object.keys(notesData[selectedClass] ?? {})
   const chapterList = selectedSubject ? notesData[selectedClass]?.[selectedSubject] ?? [] : []
+  const quizChapterList = quizSubject ? notesData[selectedClass]?.[quizSubject] ?? [] : []
 
   const paymentUpi = selectedChapter ? `upi://pay?pa=336461816324430@cnrb&pn=Aditya%20Tuition%20Centre&am=${selectedChapter.price}&cu=INR&tn=${encodeURIComponent(selectedChapter.title)}` : ''
   const paymentQrUrl = selectedChapter ? `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(paymentUpi)}` : ''
@@ -632,7 +635,7 @@ function NotesPage() {
   }
 
   const handleGenerateQuiz = async () => {
-    if (!selectedChapter || !selectedSubject) return
+    if (!selectedQuizChapter || !quizSubject) return
     const API_BASE = import.meta.env.VITE_API_URL || '/api'
     setQuizLoading(true)
     setQuizError('')
@@ -645,9 +648,9 @@ function NotesPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           class_number: selectedClass,
-          subject_name: selectedSubject,
-          chapter_number: selectedChapter.number,
-          chapter_name: selectedChapter.title,
+          subject_name: quizSubject,
+          chapter_number: selectedQuizChapter.number,
+          chapter_name: selectedQuizChapter.title,
           question_count: 25,
           difficulty: quizDifficulty,
         }),
@@ -677,7 +680,9 @@ function NotesPage() {
             onClick={() => {
               setSelectedClass(classNum)
               setSelectedSubject(null)
+              setQuizSubject(null)
               setSelectedChapter(null)
+              setSelectedQuizChapter(null)
             }}
             className={`glass card-3d rounded-3xl p-5 text-left ${selectedClass === classNum ? 'border-sky-300/40 ring-1 ring-sky-300/40' : ''}`}
           >
@@ -745,6 +750,46 @@ function NotesPage() {
           </div>
         </div>
       )}
+
+      <section className="space-y-5 rounded-[2rem] border border-cyan-300/20 bg-cyan-400/5 p-6 shadow-[0_0_32px_rgba(34,211,238,0.08)]">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-200">Separate learning tool</p>
+          <h3 className="mt-2 text-2xl font-black">Quiz Centre</h3>
+          <p className="mt-2 text-sm text-slate-300">Choose any subject and chapter to generate a separate 25-question Google quiz.</p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {subjectList.map((subject) => (
+            <button
+              key={`quiz-subject-${subject}`}
+              type="button"
+              onClick={() => {
+                setQuizSubject(subject)
+                setSelectedQuizChapter(null)
+              }}
+              className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold ${quizSubject === subject ? 'border-cyan-300/60 bg-cyan-400/15 text-cyan-100' : 'border-white/10 bg-slate-950/30 text-slate-200'}`}
+            >
+              {subject}
+            </button>
+          ))}
+        </div>
+        {quizSubject && quizChapterList.length > 0 && (
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {quizChapterList.map((chapter) => (
+              <div key={`quiz-${quizSubject}-${chapter.number}`} className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <div className="text-xs uppercase tracking-[0.2em] text-cyan-200">Chapter {chapter.number}</div>
+                <h4 className="mt-3 font-bold text-white">{chapter.title}</h4>
+                <button
+                  type="button"
+                  onClick={() => setSelectedQuizChapter(chapter)}
+                  className="mt-4 w-full rounded-xl bg-cyan-300 px-3 py-2 text-sm font-bold text-slate-950"
+                >
+                  Start 25-Question Quiz
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       {selectedChapter && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
@@ -819,21 +864,33 @@ function NotesPage() {
                 handlePaymentSuccess()
                 handleOpenSecureNotes()
               }} className="rounded-full bg-gradient-to-r from-sky-400 to-violet-400 px-4 py-2 font-semibold text-slate-950">Open Secure Notes</button>
-              <button type="button" onClick={() => void handleGenerateQuiz()} disabled={quizLoading} className="rounded-full border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 font-semibold text-cyan-100 disabled:opacity-60">
-                {quizLoading ? 'Generating...' : 'Generate Google Quiz'}
-              </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {selectedQuizChapter && !quiz && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur-sm">
+          <div className="glass w-full max-w-lg rounded-[2rem] border border-cyan-300/20 p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Quiz Centre · {quizSubject}</p>
+                <h3 className="mt-2 text-2xl font-bold">{selectedQuizChapter.title}</h3>
+              </div>
+              <button type="button" onClick={() => { setSelectedQuizChapter(null); setQuizError('') }} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
+            </div>
+            <p className="mt-4 text-sm text-slate-300">Gemini will create exactly 25 questions and a complete answer sheet for this chapter.</p>
+            <label className="mt-6 block text-sm text-slate-300">Difficulty
+              <select value={quizDifficulty} onChange={(event) => setQuizDifficulty(event.target.value as typeof quizDifficulty)} className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2 text-white">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
             {quizError && <p className="mt-4 rounded-2xl border border-rose-300/30 bg-rose-400/10 p-3 text-sm text-rose-100">{quizError}</p>}
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <label className="text-sm text-slate-300">Difficulty
-                <select value={quizDifficulty} onChange={(event) => setQuizDifficulty(event.target.value as typeof quizDifficulty)} className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2 text-white">
-                  <option value="easy">Easy</option>
-                  <option value="medium">Medium</option>
-                  <option value="hard">Hard</option>
-                </select>
-              </label>
-              <div className="rounded-xl border border-cyan-300/20 bg-cyan-400/5 px-3 py-2 text-sm text-cyan-100">Exactly 25 questions from this chapter</div>
-            </div>
+            <button type="button" onClick={() => void handleGenerateQuiz()} disabled={quizLoading} className="mt-6 w-full rounded-xl bg-cyan-300 px-4 py-3 font-bold text-slate-950 disabled:opacity-60">
+              {quizLoading ? 'Generating 25 Questions...' : 'Generate Quiz Paper'}
+            </button>
           </div>
         </div>
       )}
@@ -846,7 +903,7 @@ function NotesPage() {
                 <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Google generated quiz · {quiz.difficulty}</p>
                 <h3 className="mt-2 text-2xl font-bold">{quiz.chapter_name}</h3>
               </div>
-              <button type="button" onClick={() => setQuiz(null)} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
+              <button type="button" onClick={() => { setQuiz(null); setSelectedQuizChapter(null) }} className="rounded-full border border-white/15 px-3 py-1 text-sm">Close</button>
             </div>
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
               <div className="text-sm text-slate-300">25 questions · Select an option to check your response.</div>
