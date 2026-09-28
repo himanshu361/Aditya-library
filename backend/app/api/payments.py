@@ -101,3 +101,27 @@ def my_purchases(current_user: User = Depends(get_current_user), db: Session = D
                 "purchased_at": purchase.purchased_at,
             })
     return response
+
+
+@router.post("/payments/submit-proof")
+def submit_payment_proof(payload: dict, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    payment_id = (payload.get("payment_id") or "").strip()
+    reference = (payload.get("utr") or payload.get("reference") or "").strip()
+
+    if not payment_id or not reference:
+        raise HTTPException(status_code=400, detail="Payment ID and UTR/reference are required")
+
+    transaction = db.query(PaymentTransaction).filter(PaymentTransaction.transaction_reference == payment_id).first()
+    if not transaction:
+        raise HTTPException(status_code=404, detail="Payment reference not found")
+    if transaction.user_id != current_user.id and current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Not authorized")
+
+    transaction.status = "pending"
+    db.commit()
+    return {
+        "status": "submitted",
+        "message": "Payment proof received. Admin verification is pending.",
+        "payment_id": payment_id,
+        "reference": reference,
+    }

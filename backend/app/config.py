@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import Field
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -20,12 +20,28 @@ class Settings(BaseSettings):
     google_client_id: str = "placeholder-client-id"
     google_client_secret: str = "placeholder-client-secret"
     google_service_account: str = "placeholder-service-account"
-    google_gemini_api_key: str = ""
-    google_gemini_model: str = "gemini-2.0-flash"
+    google_gemini_api_key: str = Field(
+        default="",
+        validation_alias=AliasChoices(
+            "google_gemini_api_key",
+            "GOOGLE_GEMINI_API_KEY",
+            "googlegemini_api_key",
+            "GOOGLEGEMINI_API_KEY",
+        ),
+    )
+    google_gemini_model: str = Field(
+        default="gemini-2.0-flash",
+        validation_alias=AliasChoices("google_gemini_model", "GOOGLE_GEMINI_MODEL", "googlegemini_model", "GOOGLEGEMINI_MODEL"),
+    )
     payment_provider_key: str = "demo_key"
     payment_provider_secret: str = "demo_secret"
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", case_sensitive=False)
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore",
+    )
 
 
 @lru_cache
