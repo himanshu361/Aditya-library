@@ -1,14 +1,1226 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aditya Tuition Centre - Class 9 to 12 notes platform" />
-    <title>Aditya Tuition Centre</title>
-    <script type="module" crossorigin src="/assets/index-BNdcj57s.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Xlnt9uTJ.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aditya Library Tuition Centre - Class 9 to 12 Maths and Science study material, notes, PYQs and refresher courses.">
+    <title>Aditya Library Tuition Centre | Class 9-12 Maths & Science</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #ff9900;
+            --light-bg: #f8f9fa;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: #fff;
+        }
+
+        .navbar { background-color: var(--primary-color); }
+        .navbar-brand { font-weight: 700; color: white !important; }
+        .nav-link { color: white !important; font-weight: 500; }
+        .nav-link:hover, .nav-link.active { color: var(--secondary-color) !important; }
+
+        .hero-section {
+            background:
+                linear-gradient(rgba(0, 51, 102, 0.84), rgba(0, 51, 102, 0.84)),
+                url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: rgb(15, 101, 171);
+            padding: 110px 0;
+            text-align: center;
+        }
+
+        .hero-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+            padding: 11px 30px;
+            border: none;
+        }
+
+        .hero-btn:hover {
+            background-color: #e68a00;
+            color: white;
+        }
+
+        .feature-box {
+            border: 1px solid #101010;
+            border-radius: 10px;
+            padding: 25px 20px;
+            transition: .3s;
+            height: 100%;
+            background: rgb(68, 179, 219);
+        }
+
+        .feature-box:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,.1);
+            transform: translateY(-5px);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            color: rgb(99, 225, 95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .subject-card {
+            border-left: 5px solid var(--primary-color);
+            background: rgb(63, 158, 8);
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: .3s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,.1);
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .tag-hindi { background-color: #e3f2fd; color: #0d47a1; }
+        .tag-eng { background-color: #fff3e0; color: #e65100; }
+
+        .class-card {
+            transition: .3s;
+            height: 100%;
+        }
+
+        .class-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0,0,0,.1) !important;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .material-card.hidden {
+            display: none;
+        }
+
+        .contact-box {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+            padding: 35px;
+        }
+
+        .privacy-box {
+            border: 1px solid #d9e2ec;
+            border-radius: 12px;
+            background: white;
+            padding: 25px;
+        }
+
+        .privacy-box li { margin-bottom: 8px; }
+
+        .curriculum-badge {
+            display: inline-block;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            padding: 7px 16px;
+            font-weight: 600;
+            background: #f0f6ff;
+            color: var(--primary-color);
+        }
+
+        .test-generator {
+            background: #fff;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.08);
+        }
+
+        .question-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #fff;
+        }
+
+        .watermark-page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watermark-page::before {
+            content: "ADITYA LIBRARY TUITION CENTRE";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-28deg);
+            font-size: clamp(25px, 5vw, 55px);
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: rgba(0, 51, 102, .075);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .test-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .round-stamp {
+            width: 105px;
+            height: 105px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--primary-color);
+            transform: rotate(-12deg);
+            position: relative;
+        }
+
+        .round-stamp::after {
+            content: "ADITYA LIBRARY";
+            position: absolute;
+            bottom: 12px;
+            font-size: 8px;
+        }
+
+        @media print {
+            .navbar, .no-print, footer, #contact, #privacy,
+            .hero-section, .filter-btn, .btn, .alert {
+                display: none !important;
+            }
+
+            body { background: #fff !important; }
+            .watermark-page::before { color: rgba(0, 51, 102, .10); }
+            .watermark-page { min-height: 100vh; }
+            .test-generator { box-shadow: none; }
+        }
+
+        .payment-box {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: white;
+            padding: 25px;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-link {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-link:hover { color: var(--secondary-color); }
+
+        @media (max-width: 767px) {
+            .hero-section { padding: 80px 0; }
+            .hero-section h1 { font-size: 2.1rem; }
+        }
+
+        /* Holographic / iOS-inspired UI layer */
+        :root{--holo:#69f7ff;--holo2:#8c7cff;--glass:rgba(255,255,255,.12)}
+        body{overflow-x:hidden;background:radial-gradient(circle at 20% 10%,#eef7ff 0,#fff 38%,#f6f2ff 100%)}
+        .navbar{background:rgba(4,18,45,.72)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.15);box-shadow:0 8px 30px rgba(0,0,0,.18)}
+        .holo-scene{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(0,153,255,.06),transparent 45%)}
+        .holo-ring{position:absolute;left:50%;top:46%;width:min(72vw,760px);height:min(72vw,760px);transform:translate(-50%,-50%) rotateX(68deg);border:1px solid rgba(105,247,255,.25);border-radius:50%;box-shadow:0 0 35px rgba(105,247,255,.12),inset 0 0 35px rgba(140,124,255,.08);animation:orbitSpin 18s linear infinite}
+        .holo-ring.r2{width:min(52vw,540px);height:min(52vw,540px);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(35deg);animation-duration:12s;animation-direction:reverse}
+        .holo-ring.r3{width:min(34vw,380px);height:min(34vw,380px);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-25deg);animation-duration:8s}
+        .holo-bars{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);display:flex;align-items:end;gap:5px;height:110px;opacity:.55}
+        .holo-bars i{display:block;width:4px;border-radius:8px;background:linear-gradient(180deg,var(--holo),var(--holo2),transparent);box-shadow:0 0 12px rgba(105,247,255,.65);animation:holoBars 1.4s ease-in-out infinite alternate}
+        .holo-bars i:nth-child(2n){animation-delay:-.4s}.holo-bars i:nth-child(3n){animation-delay:-.8s}.holo-bars i:nth-child(4n){animation-delay:-1.1s}
+        .holo-bars i:nth-child(1){height:35%}.holo-bars i:nth-child(2){height:72%}.holo-bars i:nth-child(3){height:48%}.holo-bars i:nth-child(4){height:90%}.holo-bars i:nth-child(5){height:60%}.holo-bars i:nth-child(6){height:100%}.holo-bars i:nth-child(7){height:45%}.holo-bars i:nth-child(8){height:80%}.holo-bars i:nth-child(9){height:55%}.holo-bars i:nth-child(10){height:92%}.holo-bars i:nth-child(11){height:42%}.holo-bars i:nth-child(12){height:68%}.holo-bars i:nth-child(13){height:52%}.holo-bars i:nth-child(14){height:88%}.holo-bars i:nth-child(15){height:40%}
+        .glass-card,.feature-box,.subject-card,.test-generator,.payment-box,.privacy-box,.modal-content,.class-card{background:rgba(255,255,255,.64)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.65);box-shadow:0 18px 50px rgba(35,55,90,.12)}
+        
+    .hero-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 35, 75, 0.94),
+            rgba(45, 10, 95, 0.84)
+        ),
+        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80');
+
+    background-size: cover;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 49%,
+        rgba(105, 247, 255, 0.14) 50%,
+        transparent 51%,
+        transparent 100%
+    );
+
+    background-size: 38px 100%;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 25%,
+        black 75%,
+        transparent 100%
+    );
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 25%,
+        black 75%,
+        transparent 100%
+    );
+    animation: gridMove 5s linear infinite;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 38px 0;
+    }
+}
+        .hero-section>*{position:relative;z-index:1}
+        .login-pill{border:1px solid rgba(105,247,255,.65)!important;background:rgba(255,255,255,.08)!important;box-shadow:0 0 20px rgba(105,247,255,.18);border-radius:999px!important;padding:.45rem 1rem!important}
+                .biometric-btn{border:1px solid rgba(105,247,255,.55);background:linear-gradient(135deg,rgba(105,247,255,.12),rgba(140,124,255,.15));}
+        @keyframes orbitSpin{to{transform:translate(-50%,-50%) rotateX(68deg) rotateZ(360deg)}}
+        @keyframes holoBars{from{transform:scaleY(.55);filter:brightness(.8)}to{transform:scaleY(1.12);filter:brightness(1.4)}}
+        @keyframes gridMove{to{background-position:38px 0}}
+        @media(max-width:767px){.holo-ring{opacity:.55}.navbar .login-pill{margin-top:8px}}
+
+    
+/* ===== iOS 3D / Galaxy UI layer ===== */
+:root{--space:#030615;--glass:rgba(255,255,255,.10);--glass-border:rgba(255,255,255,.22);--cyan:#63f7ff;--violet:#a78bfa;--pink:#ff6bd6}
+body{background:transparent!important;color:#eaf3ff!important;overflow-x:hidden}
+#spaceCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,#111b4a 0%,#05091c 42%,#01020a 100%)}
+.space-vignette{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at center,transparent 35%,rgba(0,0,0,.45) 100%),linear-gradient(180deg,rgba(3,6,21,.05),rgba(3,6,21,.62))}
+.dynamic-island{position:fixed;top:14px;bottom:auto;left:50%;transform:translateX(-50%);z-index:2000;min-width:190px;height:42px;padding:0 15px;border-radius:24px;background:rgba(3,5,14,.78);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:0 12px 45px rgba(0,0,0,.38),0 0 35px rgba(99,247,255,.09);display:flex;align-items:center;justify-content:center;gap:9px;color:#fff;font-size:12px;letter-spacing:.2px;transition:.45s cubic-bezier(.2,.8,.2,1)}
+.dynamic-island:hover{min-width:280px;height:48px;box-shadow:0 16px 55px rgba(0,0,0,.45),0 0 40px rgba(99,247,255,.18)}
+.island-camera{width:10px;height:10px;border-radius:50%;background:#02030a;box-shadow:inset 0 0 0 2px #111,0 0 9px rgba(99,247,255,.35)}
+.island-dot{width:7px;height:7px;border-radius:50%;background:#55f7c0;box-shadow:0 0 12px #55f7c0;animation:islandPulse 1.7s infinite}
+.island-label{opacity:.86;white-space:nowrap}.island-time{font-variant-numeric:tabular-nums;opacity:.62}
+@keyframes islandPulse{50%{transform:scale(.65);opacity:.45}}
+.orbit-hud{position:fixed;right:24px;top:50%;width:74px;height:74px;transform:translateY(-50%);z-index:1030;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(8,12,30,.38);backdrop-filter:blur(18px);box-shadow:0 0 35px rgba(99,247,255,.12);pointer-events:auto}
+.orbit-hud .orbit-core{position:absolute;left:50%;top:50%;width:17px;height:17px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#63f7ff 30%,#7167ff 72%);box-shadow:0 0 20px #63f7ff}
+.orbit-hud .orbit-node{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:#fff;box-shadow:0 0 14px #fff;transform:rotate(var(--a)) translateY(-30px);animation:nodeOrbit 4s linear infinite}
+.orbit-hud .orbit-node:nth-child(3){--a:120deg;animation-duration:5.5s}.orbit-hud .orbit-node:nth-child(4){--a:240deg;animation-duration:3.6s}
+@keyframes nodeOrbit{to{transform:rotate(calc(var(--a) + 360deg)) translateY(-30px)}}
+.rotating-icon{display:inline-grid;place-items:center;animation:iconFloat 3.5s ease-in-out infinite;transform-origin:center}
+.rotating-icon.spin{animation:iconSpin 7s linear infinite}
+@keyframes iconFloat{50%{transform:translateY(-4px) rotate(4deg)}}
+@keyframes iconSpin{to{transform:rotate(360deg)}}
+.glass-ios{background:rgba(255,255,255,.09)!important;border:1px solid rgba(255,255,255,.18)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;box-shadow:0 20px 70px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.12)!important}
+.navbar{padding-top:18px!important;background:rgba(3,7,22,.58)!important}
+.navbar-brand{letter-spacing:-.5px}.hero-section{background:linear-gradient(135deg,rgba(2,12,35,.82),rgba(30,8,68,.62))!important}
+.feature-box,.subject-card,.test-generator,.payment-box,.privacy-box,.class-card,.modal-content{color:#eaf3ff!important}
+.feature-box p,.feature-box .text-muted,.subject-card .text-muted,.text-muted{color:rgba(234,243,255,.68)!important}
+.bottom-dock{bottom:18px!important;background:rgba(3,7,20,.66)!important;border-color:rgba(255,255,255,.2)!important}
+@media(max-width:700px){.dynamic-island{top:auto;bottom:10px;min-width:150px;height:36px}.orbit-hud{right:10px;width:58px;height:58px}.orbit-hud .orbit-node{transform:rotate(var(--a)) translateY(-23px)}.bottom-dock{bottom:10px}}
+@media(prefers-reduced-motion:reduce){.holo-ring,.holo-bars i,.orbit-hud .orbit-node,.rotating-icon,.dynamic-island .island-dot{animation:none!important}}
+
+/* Visible 3D scene stacking: the original version put the canvas behind the body background. */
+body > nav, body > section, body > footer, body > .container, body > .modal { position: relative; z-index: 2; }
+.hero-section, section { background-color: rgba(3, 6, 21, .48); }
+.hero-section { isolation: isolate; }
+.dynamic-island, .orbit-hud { z-index: 3000; }
+.modal-backdrop { z-index: 4000; }
+.modal { z-index: 4010; }
+
+.holo-icon-strip{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:3000;width:62px;height:250px;pointer-events:none;filter:drop-shadow(0 0 12px rgba(99,247,255,.22));}
+.holo-icon{position:absolute;left:50%;top:50%;width:42px;height:42px;margin:-21px;border:1px solid rgba(99,247,255,.38);border-radius:14px;display:grid;place-items:center;color:#9ffaff;font-size:18px;background:rgba(7,12,34,.42);backdrop-filter:blur(14px);box-shadow:inset 0 0 18px rgba(99,247,255,.08),0 0 20px rgba(99,247,255,.10);transform:rotate(var(--d)) translateY(-92px) rotate(calc(var(--d) * -1));animation:holoIconOrbit 9s linear infinite;}
+@keyframes holoIconOrbit{to{transform:rotate(calc(var(--d) + 360deg)) translateY(-92px) rotate(calc((var(--d) + 360deg) * -1));}}
+@media(max-width:700px){.holo-icon-strip{left:8px;transform:translateY(-50%) scale(.78);transform-origin:left center}.orbit-hud{right:8px}}
+
+/* ===== Dark + Bold text layer ===== */
+body, body p, body li, body span, body div, body label, body small, body option, body input, body select, body textarea, body button, body a {
+  font-weight: 600 !important;
+}
+body h1, body h2, body h3, body h4, body h5, body h6, body strong, body .fw-bold, body .navbar-brand, body .nav-link {
+  font-weight: 800 !important;
+}
+/* Keep text readable on the existing dark hero/navbar/footer and holographic controls. */
+.navbar, .navbar a, .navbar button, .hero-section, .hero-section a, .hero-section button, footer, footer a, .dynamic-island, .holo-icon, .orbit-hud, .bottom-dock, .bottom-dock button, .login-pill {
+  color: #f8fafc !important;
+}
+/* All normal glass/content cards use a dark text treatment. */
+.feature-box, .subject-card, .test-generator, .payment-box, .privacy-box, .class-card, .modal-content, .glass-card, .glass-ios, .question-item, .card {
+  color: #111827 !important;
+}
+.feature-box p, .subject-card p, .test-generator p, .payment-box p, .privacy-box p, .privacy-box li, .class-card p, .modal-content p, .question-item, .card p, .text-muted {
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+}
+.feature-box h1, .feature-box h2, .feature-box h3, .feature-box h4, .feature-box h5, .feature-box h6,
+.subject-card h1, .subject-card h2, .subject-card h3, .subject-card h4, .subject-card h5, .subject-card h6,
+.test-generator h1, .test-generator h2, .test-generator h3, .test-generator h4, .test-generator h5, .test-generator h6,
+.payment-box h1, .payment-box h2, .payment-box h3, .payment-box h4, .payment-box h5, .payment-box h6,
+.privacy-box h1, .privacy-box h2, .privacy-box h3, .privacy-box h4, .privacy-box h5, .privacy-box h6,
+.class-card h1, .class-card h2, .class-card h3, .class-card h4, .class-card h5, .class-card h6,
+.modal-content h1, .modal-content h2, .modal-content h3, .modal-content h4, .modal-content h5, .modal-content h6,
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  color: #0b1220 !important;
+  font-weight: 800 !important;
+}
+input, select, textarea { color: #111827 !important; font-weight: 600 !important; }
+input::-moz-placeholder, textarea::-moz-placeholder { color: #4b5563 !important; font-weight: 600 !important; }
+input::placeholder, textarea::placeholder { color: #4b5563 !important; font-weight: 600 !important; }
+
+/* ===== Bottom Dynamic Island + Page Effects ===== */
+.dynamic-island{
+  animation: islandBottomEnter .8s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes islandBottomEnter{
+  from{opacity:0;transform:translate(-50%,28px) scale(.88);filter:blur(8px)}
+  to{opacity:1;transform:translate(-50%,0) scale(1);filter:blur(0)}
+}
+.modal .modal-dialog{animation:modalFloatIn .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes modalFloatIn{
+  from{opacity:0;transform:translateY(24px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.modal-backdrop.show{opacity:.72!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.modal-content{border-radius:24px!important;box-shadow:0 25px 90px rgba(0,0,0,.42),0 0 35px rgba(99,247,255,.10)!important;overflow:hidden}
+.modal-content::before{content:"";display:block;height:2px;background:linear-gradient(90deg,transparent,#63f7ff,#a78bfa,#ff6bd6,transparent);opacity:.8}
+.modal-content input,.modal-content select,.modal-content textarea{transition:.25s ease;box-shadow:inset 0 0 0 1px rgba(99,247,255,.08)}
+.modal-content input:focus,.modal-content select:focus,.modal-content textarea:focus{transform:translateY(-1px);box-shadow:0 0 0 2px rgba(99,247,255,.18),0 8px 25px rgba(99,247,255,.08)!important}
+.modal-content .btn{transition:.25s ease}
+.modal-content .btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,247,255,.16)}
+@media(max-width:700px){.dynamic-island{top:8px!important;bottom:auto!important}.modal .modal-dialog{margin:.75rem}.modal-content{border-radius:20px!important}}
+@media(prefers-reduced-motion:reduce){.dynamic-island,.modal .modal-dialog{animation:none!important}}
+
+
+/* ===== iOS Glass Authentication UI ===== */
+.auth-modal-ios .modal-dialog{max-width:430px}
+.auth-modal-ios .modal-content{
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.28)!important;
+  border-radius:30px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.07))!important;
+  backdrop-filter:blur(32px) saturate(180%)!important;
+  -webkit-backdrop-filter:blur(32px) saturate(180%)!important;
+  box-shadow:0 30px 90px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.22),0 0 45px rgba(99,247,255,.10)!important;
+  color:#111827!important;
+  animation:iosModalIn .42s cubic-bezier(.2,.8,.2,1);
+}
+.auth-modal-ios .modal-content:before{content:"";position:absolute;left:18%;right:18%;top:0;height:2px;background:linear-gradient(90deg,transparent,#63f7ff,#a78bfa,transparent);box-shadow:0 0 18px #63f7ff;opacity:.85}
+.auth-modal-ios .modal-header{border:0;padding:25px 25px 10px;background:transparent}
+.auth-modal-ios .modal-title{font-weight:800;color:#111827;letter-spacing:-.4px}
+.auth-modal-ios .modal-body{padding:15px 25px 26px}
+.auth-modal-ios .form-control{
+  border:1px solid rgba(255,255,255,.38)!important;border-radius:16px!important;
+  background:rgba(255,255,255,.52)!important;color:#111827!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.55),0 6px 20px rgba(15,23,42,.06)!important;
+  padding:12px 14px;transition:.25s ease;
+}
+.auth-modal-ios .form-control::-moz-placeholder{color:#4b5563!important}
+.auth-modal-ios .form-control::placeholder{color:#4b5563!important}
+.auth-modal-ios .form-control:focus{border-color:rgba(99,247,255,.8)!important;background:rgba(255,255,255,.76)!important;box-shadow:0 0 0 4px rgba(99,247,255,.12),0 0 24px rgba(99,247,255,.14)!important;transform:translateY(-1px)}
+.auth-modal-ios #authSubmit{border:0;border-radius:16px;padding:12px;font-weight:800;background:linear-gradient(135deg,#111827,#263b62);box-shadow:0 10px 25px rgba(17,24,39,.25);transition:.25s}
+.auth-modal-ios #authSubmit:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(17,24,39,.32)}
+.auth-modal-ios .biometric-btn{border-radius:16px!important;color:#111827!important;font-weight:700!important;background:rgba(255,255,255,.38)!important;backdrop-filter:blur(12px)!important}
+.auth-modal-ios #authToggle{color:#111827!important;font-weight:700;text-decoration:none}
+.auth-modal-ios .small.text-muted{color:#374151!important}
+.auth-modal-ios .modal-header .btn-close{filter:none;opacity:.75}
+@keyframes iosModalIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-backdrop.show{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background-color:rgba(1,5,18,.42)!important}
+
+/* ===== Final navigation/text fixes ===== */
+.dynamic-island{top:14px!important;bottom:auto!important;}
+@media(max-width:700px){.dynamic-island{top:8px!important;bottom:auto!important;}}
+
+/* Mobile navbar dropdown: readable dark text on a light glass panel. */
+@media(max-width:991.98px){
+  .navbar .navbar-collapse{
+    margin-top:10px;
+    padding:14px;
+    border-radius:20px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(22px) saturate(160%);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid rgba(15,23,42,.12);
+    box-shadow:0 18px 45px rgba(0,0,0,.18);
+  }
+  .navbar .navbar-nav .nav-link{
+    color:#111827!important;
+    font-weight:800!important;
+    border-radius:12px;
+    padding:.7rem .85rem;
+  }
+  .navbar .navbar-nav .nav-link:hover,
+  .navbar .navbar-nav .nav-link.active{
+    color:#003366!important;
+    background:rgba(99,247,255,.12);
+  }
+}
+
+/* Study Material and Test Generator content must stay dark and bold. */
+#study-material, #test-generator{color:#111827!important;}
+#study-material h1,#study-material h2,#study-material h3,#study-material h4,#study-material h5,#study-material h6,
+#study-material p,#study-material li,#study-material label,#study-material span,#study-material strong,#study-material a,
+#test-generator h1,#test-generator h2,#test-generator h3,#test-generator h4,#test-generator h5,#test-generator h6,
+#test-generator p,#test-generator li,#test-generator label,#test-generator span,#test-generator strong,#test-generator a,
+#test-generator summary{
+  color:#111827!important;
+  font-weight:700!important;
+}
+#study-material .text-muted,#test-generator .text-muted{color:#374151!important;font-weight:700!important;}
+
+/* Final requested tweaks: keep the top-left brand perfectly still and make every mobile menu label dark. */
+.navbar-brand,
+.navbar-brand.rotating-icon,
+.navbar-brand.spin{
+  animation:none!important;
+  transform:none!important;
+}
+@media(max-width:991.98px){
+  .navbar .navbar-collapse,
+  .navbar .navbar-collapse *{
+    color:#111827!important;
+  }
+  .navbar .navbar-collapse .nav-link,
+  .navbar .navbar-collapse .login-pill,
+  .navbar .navbar-collapse button{
+    color:#111827!important;
+    font-weight:800!important;
+  }
+  .navbar .navbar-collapse .login-pill{
+    background:rgba(255,255,255,.72)!important;
+    border-color:rgba(17,24,39,.18)!important;
+  }
+}
+
+/* Do not leave any legacy bottom dock visible. */
+.bottom-dock{display:none!important;}
+
+
+/* ===== FINAL MODAL CLICK / INPUT FIX ===== */
+/* The stacking rule for body > .modal was overriding Bootstrap's modal z-index. */
+body > .modal {
+  z-index: 4010 !important;
+}
+body > .modal.show {
+  z-index: 4010 !important;
+}
+.modal-dialog {
+  position: relative;
+  z-index: 4011;
+  pointer-events: auto !important;
+}
+.modal-content,
+.modal-content * {
+  pointer-events: auto;
+}
+.modal-backdrop {
+  z-index: 4000 !important;
+}
+.modal-backdrop.show {
+  pointer-events: auto;
+}
+/* Keep decorative layers from ever intercepting form clicks. */
+.holo-scene, #spaceCanvas, .space-vignette, .holo-icon-strip {
+  pointer-events: none !important;
+}
+
+</style>
+</head>
+<body>
+<div class="holo-scene" aria-hidden="true"><div class="holo-ring"></div><div class="holo-ring r2"></div><div class="holo-ring r3"></div><div class="holo-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+<canvas id="spaceCanvas" aria-hidden="true"></canvas><div class="space-vignette" aria-hidden="true"></div>
+<div class="dynamic-island" id="dynamicIsland" aria-label="Aditya Library live status"><span class="island-camera"></span><span class="island-dot"></span><span class="island-label" id="islandLabel">Aditya Library</span><span class="island-time" id="islandTime"></span></div>
+<div class="orbit-hud" aria-hidden="true"><span class="orbit-core"></span><span class="orbit-node"></span><span class="orbit-node"></span><span class="orbit-node"></span></div>
+<div class="holo-icon-strip" aria-hidden="true">
+  <div class="holo-icon" style="--d:0deg">✦</div>
+  <div class="holo-icon" style="--d:60deg">⚛</div>
+  <div class="holo-icon" style="--d:120deg">⌬</div>
+  <div class="holo-icon" style="--d:180deg">◈</div>
+  <div class="holo-icon" style="--d:240deg">∿</div>
+  <div class="holo-icon" style="--d:300deg">∆</div>
+</div>
+
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#home">Aditya Library</a>
+
+        <button class="navbar-toggler bg-light" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#study-material">Study Material</a></li>
+                <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#test-generator">Test Generator</a></li>
+                <li class="nav-item"><a class="nav-link" href="#privacy">Privacy</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero-section">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Aditya Library Tuition Centre</h1>
+        <p class="lead">Excellence in Education for Class 9 to 12</p>
+        <h3 class="mb-4">Maths &amp; Science | Hindi &amp; English</h3>
+        <p>Understanding Notes, Mixed PYQs, and Refresher Courses.</p>
+        <p class="mt-3 mb-0"><strong>📘 Latest Syllabus &amp; Updated Books</strong></p>
+        <small>Study material aligned with the applicable current curriculum, including NEP 2020 / NCF-SE 2023 principles where applicable.</small>
+        <a href="#study-material" class="btn hero-btn mt-3">View Study Material</a>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose Aditya Library?</h2>
+            <p class="text-muted">We focus on conceptual clarity and exam preparation.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle mx-auto">📚</div>
+                    <h4>Bilingual Notes</h4>
+                    <p>Study material available in both Hindi and English to support complete understanding.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle mx-auto">📝</div>
+                    <h4>PYQ Mix</h4>
+                    <p>Previous Year Questions combined with refresher concepts for exam preparation.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle mx-auto">🚀</div>
+                    <h4>Refresher Courses</h4>
+                    <p>Quick revision resources and crash courses for efficient exam preparation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Curriculum & Books -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Latest Syllabus &amp; Updated Study Material</h2>
+            <p class="text-muted">Curriculum-focused notes for Classes 9–12, with separate CBSE and UP Board tracks.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="feature-box">
+                    <h4>📚 Current Curriculum Focus</h4>
+                    <p class="mb-0">
+                        The website is structured to keep separate <strong>CBSE</strong> and <strong>UP Board</strong> study tracks. For CBSE, the Academic Session <strong>2026–27</strong> curriculum is used as the current reference. For UP Board, the current UPMSP board-issued syllabus is used as the reference. NEP 2020/NCF-SE 2023 principles are reflected where applicable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="feature-box">
+                    <h4>📖 Updated Books &amp; References</h4>
+                    <p class="mb-0">
+                        Material can cover the latest applicable textbooks and reference books used for the student's
+                        class, including school-prescribed books and resources such as <strong>Ganit Manjari</strong>
+                        where applicable.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+            <a class="btn btn-outline-primary" href="https://cbseacademic.nic.in/" target="_blank" rel="noopener">CBSE Academic</a>
+            <a class="btn btn-outline-primary" href="https://upmsp.edu.in/Board_Syllabus.aspx" target="_blank" rel="noopener">UPMSP Syllabus</a>
+        </div>
+
+        <div class="alert alert-info mt-4 mb-0">
+            <strong>Important:</strong> Syllabus and textbook availability can differ by board, class and academic year.
+            The centre should verify the student's board and current prescribed book list before publishing a
+            specific book as “latest”.
+        </div>
+    </div>
+</section>
+
+<!-- Study Material -->
+<section id="study-material" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">Available Study Material</h2>
+
+        <div class="text-center mb-4">
+            <button class="btn btn-outline-secondary btn-sm filter-btn active" data-filter="all">All</button>
+            <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="9">Class 9</button>
+            <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="10">Class 10</button>
+            <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="11">Class 11</button>
+            <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="12">Class 12</button>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-lg-4 mb-4 material-card" data-classes="9,10,11,12">
+                <div class="subject-card h-100">
+                    <h4 class="text-primary">Mathematics</h4>
+                    <p class="text-muted">Algebra, Geometry, Calculus &amp; more</p><p><small>Updated notes &amp; practice based on applicable books, including Ganit Manjari where prescribed.</small></p>
+                    <div class="mb-2">
+                        <span class="tag tag-hindi">Hindi Medium</span>
+                        <span class="tag tag-eng">English Medium</span>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2">✅ Concept Notes (PDF)</li>
+                        <li class="mb-2">✅ Formula Handbooks</li>
+                        <li class="mb-2">✅ Previous Year Questions</li>
+                        <li class="mb-2">✅ Refresher Course</li>
+                    </ul>
+                    <button class="btn btn-primary w-100" onclick="downloadPrompt('Maths')">Download Material</button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4 material-card" data-classes="9,10,11,12">
+                <div class="subject-card h-100">
+                    <h4 class="text-success">Science (PCM/B)</h4>
+                    <p class="text-muted">Physics, Chemistry &amp; Biology</p>
+                    <div class="mb-2">
+                        <span class="tag tag-hindi">Hindi Medium</span>
+                        <span class="tag tag-eng">English Medium</span>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2">✅ Diagram Based Notes</li>
+                        <li class="mb-2">✅ Numerical Solving</li>
+                        <li class="mb-2">✅ Board PYQs</li>
+                        <li class="mb-2">✅ Quick Revision Sheets</li>
+                    </ul>
+                    <button class="btn btn-success w-100" onclick="downloadPrompt('Science')">Download Material</button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4 material-card" data-classes="9,10,11,12">
+                <div class="subject-card h-100">
+                    <h4 class="text-warning">Test Series</h4>
+                    <p class="text-muted">Weekly Mock Tests</p>
+                    <div class="mb-2">
+                        <span class="tag tag-hindi">Hindi Medium</span>
+                        <span class="tag tag-eng">English Medium</span>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2">✅ Chapter Wise Tests</li>
+                        <li class="mb-2">✅ Full Syllabus Mock</li>
+                        <li class="mb-2">✅ Answer Key</li>
+                        <li class="mb-2">✅ Analysis Report</li>
+                    </ul>
+                    <button class="btn btn-warning w-100" onclick="downloadPrompt('Test Series')">Start Test</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="feature-box mt-4" id="live-material-browser">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <div>
+                    <h3 class="fw-bold mb-1">Live Study Material</h3>
+                    <p class="text-muted mb-0">Classes, subjects and chapters loaded directly from the Aditya Library server.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <select id="liveClassSelect" class="form-select" style="min-width:150px"></select>
+                    <select id="liveSubjectSelect" class="form-select" style="min-width:180px"></select>
+                </div>
+            </div>
+            <div id="liveMaterialStatus" class="small text-muted mb-3">Loading...</div>
+            <div id="chapterGrid" class="row g-3"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Classes -->
+<section id="classes" class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Select Your Class</h2>
+
+        <div class="row text-center g-3">
+
+            <div class="col-6 col-md-3">
+                <div class="class-card p-4 border rounded bg-white shadow-sm">
+                    <h3 class="fw-bold">Class 9</h3>
+                    <p>Foundation Builder</p>
+                    <a href="#study-material" class="text-decoration-none class-link" data-class="9">View Content →</a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="class-card p-4 border rounded bg-white shadow-sm">
+                    <h3 class="fw-bold">Class 10</h3>
+                    <p>Board Preparation</p>
+                    <a href="#study-material" class="text-decoration-none class-link" data-class="10">View Content →</a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="class-card p-4 border rounded bg-white shadow-sm">
+                    <h3 class="fw-bold">Class 11</h3>
+                    <p>Intermediate Science</p>
+                    <a href="#study-material" class="text-decoration-none class-link" data-class="11">View Content →</a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="class-card p-4 border rounded bg-white shadow-sm">
+                    <h3 class="fw-bold">Class 12</h3>
+                    <p>Board &amp; Entrance Preparation</p>
+                    <a href="#study-material" class="text-decoration-none class-link" data-class="12">View Content →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Test Generator -->
+<section id="test-generator" class="py-5 bg-light watermark-page">
+    <div class="container test-content">
+        <div class="text-center mb-4">
+            <span class="curriculum-badge">ADITYA LIBRARY TUITION CENTRE</span>
+            <h2 class="fw-bold mt-3">Student Test Generator</h2>
+            <p class="text-muted">Generate a printable practice test for Maths or Science.</p>
+            <div class="round-stamp mx-auto mt-3">ADITYA LIBRARY<br>HAPUR<br>AUTHORISED</div>
+        </div>
+
+        <div class="test-generator">
+            <div class="row g-3 no-print">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Board</label>
+                    <select id="testBoard" class="form-select">
+                        <option value="CBSE">CBSE</option>
+                        <option value="UP Board">UP Board</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Class</label>
+                    <select id="testClass" class="form-select">
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Subject</label>
+                    <select id="testSubject" class="form-select">
+                        <option value="Maths">Mathematics</option>
+                        <option value="Science">Science</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Chapter</label>
+                    <select id="testChapter" class="form-select"><option value="">Select chapter</option></select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Difficulty</label>
+                    <select id="testDifficulty" class="form-select">
+                        <option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Questions</label>
+                    <select id="questionCount" class="form-select">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="col-md-8 d-flex align-items-end gap-2">
+                    <button class="btn btn-primary" onclick="generateTest()">Generate Test</button>
+                    <button class="btn btn-success" onclick="generateAITest()">AI Test</button>
+                    <button class="btn btn-outline-secondary" onclick="window.print()">Print Test</button>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div id="testPaper">
+                <div class="text-center">
+                    <h3 class="fw-bold">Aditya Library Tuition Centre</h3>
+                    <p id="testMeta" class="mb-1">Select options and click Generate Test.</p>
+                    <p class="small text-muted">For educational practice • Student: ____________________</p>
+                </div>
+                <div id="questions"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <div class="contact-box text-center">
+            <h2 class="fw-bold">Contact Aditya Library</h2>
+            <p class="mb-4">For admissions, tuition details, study material and test series information.</p>
+
+            <!-- Replace these placeholder details before publishing -->
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-4">
+                    <strong>📞 Phone</strong>
+                    <p class="mb-0">+91 9528304133<br>+91 8755540381</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>📧 Email</strong>
+                    <p class="mb-0">Owner: Mr. Aditya Parashar</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>📍 Address</strong>
+                    <p class="mb-0">Dehra Kuti, Hapur</p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="tel:+919528304133" class="btn btn-warning me-2">Call Now</a>
+                <a href="https://wa.me/919528304133" class="btn btn-light" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Privacy & Payment -->
+<section id="privacy" class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="privacy-box h-100">
+                    <h3 class="fw-bold mb-3">🔒 Notes & Content Privacy</h3>
+                    <p>Aditya Library study material is intended for registered students and personal educational use only.</p>
+                    <ul>
+                        <li>Do not share, forward, copy, resell or redistribute downloaded notes or course content.</li>
+                        <li>Students should not take screenshots, screen recordings or video recordings of protected course content.</li>
+                        <li>Access may be limited to the registered student and authorised device/account.</li>
+                        <li>Using the same registered phone number on another phone may require verification by Aditya Library.</li>
+                        <li>Do not share your OTP, password, payment receipt or account credentials with another person.</li>
+                    </ul>
+                    <div class="alert alert-warning mb-0">
+                        <strong>Important:</strong> A normal website cannot technically guarantee that screenshots or screen recordings are impossible. These rules are intended to protect the centre's educational content and discourage unauthorised copying.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="payment-box h-100">
+                    <h3 class="fw-bold mb-3">💳 Payment Methods</h3>
+                    <p>For admission, tuition, notes or test-series payment, please contact the centre and confirm the payment details before sending money.</p>
+                    <div class="mb-3">
+                        <strong>UPI / PhonePe / Google Pay</strong>
+                        <p class="text-muted mb-1">Contact the centre for the current verified UPI ID.</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Payment Contact</strong>
+                        <p class="mb-1">+91 9528304133</p>
+                        <p class="mb-0">+91 8755540381</p>
+                    </div>
+                    <a href="tel:+919528304133" class="btn btn-primary w-100">Confirm Payment Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Connected account/payment/note UI -->
+<div class="modal fade" id="accountModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Student Account</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="accountPanel"></div></div></div></div></div>
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Purchase Study Material</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="paymentPanel"></div></div></div></div>
+<div class="modal fade" id="noteModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="noteTitle">Protected Note</h5><button class="btn-close" data-bs-dismiss="modal" onclick="closeNoteSession()"></button></div><div class="modal-body"><div id="noteStatus" class="alert alert-info">Authorising...</div><div class="ratio ratio-16x9"><iframe id="noteFrame" src="about:blank" title="Study note" allow="fullscreen"></iframe></div></div></div></div></div>
+<div class="modal fade auth-modal-ios" id="authModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="authTitle">Student Login</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="authMessage"></div><form id="authForm"><div id="nameWrap" class="mb-2 d-none"><input id="authName" class="form-control" placeholder="Full name"></div><div class="mb-2"><input id="authEmail" type="email" class="form-control" placeholder="Email" required></div><div id="phoneWrap" class="mb-2 d-none"><input id="authPhone" class="form-control" placeholder="Phone number"></div><div class="mb-2"><input id="authPassword" type="password" class="form-control" placeholder="Password" required minlength="6"></div><div id="confirmWrap" class="mb-2 d-none"><input id="authConfirm" type="password" class="form-control" placeholder="Confirm password"></div><button class="btn btn-primary w-100" type="submit" id="authSubmit">Login</button></form><div class="d-flex align-items-center gap-2 my-3"><hr class="flex-grow-1"><span class="small text-muted">OR</span><hr class="flex-grow-1"></div><div id="googleSignInButton" class="d-flex justify-content-center"></div><button class="btn biometric-btn w-100 mt-2" type="button" onclick="biometricLogin()">🔐 Continue with Biometrics</button><button class="btn btn-link w-100 mt-2" id="authToggle" type="button">Create student account</button><div class="small text-muted text-center mt-2">Biometric login uses your device's secure authenticator (Face ID, Touch ID, Windows Hello or Android biometric where supported).</div></div></div></div></div>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <h5>Aditya Library Tuition Centre</h5>
+        <p class="text-white-50 mb-2">Class 9–12 | Maths &amp; Science | Hindi &amp; English</p>
+        <p class="text-white-50 mb-2">Owner: Mr. Aditya Parashar | Dehra Kuti, Hapur</p>
+        <p class="mb-0">&copy; <span id="year"></span> Aditya Library. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="api-config.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+const API_BASE=(window.ADITYA_API_BASE || localStorage.getItem('aditya_api_base') || '/api').replace(/\/$/,'');
+const TOKEN_KEY='aditya_access_token';
+const GOOGLE_CLIENT_ID=window.ADITYA_GOOGLE_CLIENT_ID || '';
+let googleInitialized=false;
+let liveClasses=[], liveSubjects=[], liveChapters=[], selectedChapterId=null, noteSessionId=null, noteHeartbeat=null, authMode='login';
+const $=id=>document.getElementById(id);
+const token=()=>localStorage.getItem(TOKEN_KEY);
+function showModal(id){
+    const el=$(id);
+    if(!el || !window.bootstrap || !bootstrap.Modal)return;
+    document.querySelectorAll('.navbar-collapse.show').forEach(n=>n.classList.remove('show'));
+    bootstrap.Modal.getOrCreateInstance(el).show();
+}
+function hideModal(id){bootstrap.Modal.getOrCreateInstance($(id)).hide()}
+async function apiFetch(path, options={}){
+    const headers=new Headers(options.headers||{});
+    if(options.body && !headers.has('Content-Type') && !(options.body instanceof FormData)) headers.set('Content-Type','application/json');
+    if(token()) headers.set('Authorization','Bearer '+token());
+    const response=await fetch(API_BASE+path,{...options,headers});
+    let data={}; try{data=await response.json()}catch{}
+    if(response.status===401){localStorage.removeItem(TOKEN_KEY); updateAccountButton();}
+    if(!response.ok) throw new Error(data.detail||data.message||`Request failed (${response.status})`);
+    return data;
+}
+
+function b64ToBytes(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const raw=atob(s);return Uint8Array.from(raw,c=>c.charCodeAt(0));}
+function bytesToB64(buf){let s='';new Uint8Array(buf).forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function publicKeyFromOptions(o){const x=structuredClone(o);x.challenge=b64ToBytes(x.challenge);if(x.user)x.user.id=b64ToBytes(x.user.id);if(x.excludeCredentials)x.excludeCredentials=x.excludeCredentials.map(c=>({...c,id:b64ToBytes(c.id)}));return x;}
+function publicKeyAuthOptions(o){const x=structuredClone(o);x.challenge=b64ToBytes(x.challenge);if(x.allowCredentials)x.allowCredentials=x.allowCredentials.map(c=>({...c,id:b64ToBytes(c.id)}));return x;}
+function credentialToJSON(c){return {id:c.id,rawId:bytesToB64(c.rawId),type:c.type,response:{clientDataJSON:bytesToB64(c.response.clientDataJSON),attestationObject:c.response.attestationObject?bytesToB64(c.response.attestationObject):undefined,authenticatorData:c.response.authenticatorData?bytesToB64(c.response.authenticatorData):undefined,signature:c.response.signature?bytesToB64(c.response.signature):undefined,userHandle:c.response.userHandle?bytesToB64(c.response.userHandle):null},clientExtensionResults:c.getClientExtensionResults?c.getClientExtensionResults():{},authenticatorAttachment:c.authenticatorAttachment||'platform'};}
+function initGoogle(){if(googleInitialized||!window.google||!GOOGLE_CLIENT_ID)return;googleInitialized=true;google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID,callback:async r=>{try{const d=await apiFetch('/auth/google',{method:'POST',body:JSON.stringify({credential:r.credential})});localStorage.setItem(TOKEN_KEY,d.access_token);hideModal('authModal');updateAccountButton();await loadLiveCatalog();}catch(e){$('authMessage').innerHTML='<div class="alert alert-danger">'+escapeHtml(e.message)+'</div>';}}});google.accounts.id.renderButton($('googleSignInButton'),{theme:'outline',size:'large',shape:'pill',width:320,text:'continue_with'});}
+async function registerBiometric(){if(!token()){openAuth();return;}if(!window.PublicKeyCredential){alert('This browser/device does not support biometric WebAuthn.');return;}try{const options=await apiFetch('/auth/biometric/register/options',{method:'POST'});const cred=await navigator.credentials.create({publicKey:publicKeyFromOptions(options)});await apiFetch('/auth/biometric/register/verify',{method:'POST',body:JSON.stringify(credentialToJSON(cred))});alert('Biometric login enabled on this device.');}catch(e){alert('Biometric setup: '+e.message);}}
+async function biometricLogin(){if(!window.PublicKeyCredential){alert('Biometric WebAuthn is not supported on this browser/device.');return;}const email=$('authEmail').value.trim().toLowerCase();if(!email){$('authMessage').innerHTML='<div class="alert alert-warning">Pehle email enter karein, phir biometric login.</div>';return;}try{const d=await apiFetch('/auth/biometric/login/options',{method:'POST',body:JSON.stringify({email})});const cred=await navigator.credentials.get({publicKey:publicKeyAuthOptions(d.options)});const out=await apiFetch('/auth/biometric/login/verify',{method:'POST',body:JSON.stringify({user_id:d.user_id,credential:credentialToJSON(cred)})});localStorage.setItem(TOKEN_KEY,out.access_token);hideModal('authModal');updateAccountButton();await loadLiveCatalog();}catch(e){$('authMessage').innerHTML='<div class="alert alert-danger">Biometric login: '+escapeHtml(e.message)+'</div>';}}
+async function biometricPaymentConfirm(paymentId,deepLink){if(!window.PublicKeyCredential){alert('Is device par biometric verification available nahi hai.');return;}try{const me=await apiFetch('/users/me');const d=await apiFetch('/auth/biometric/login/options',{method:'POST',body:JSON.stringify({email:me.email})});const cred=await navigator.credentials.get({publicKey:publicKeyAuthOptions(d.options)});await apiFetch('/auth/biometric/login/verify',{method:'POST',body:JSON.stringify({user_id:d.user_id,credential:credentialToJSON(cred)})});location.href=deepLink;}catch(e){alert('Payment biometric verification: '+e.message+'. Pehle Student Profile se biometric enable karein.');}}
+
+function updateAccountButton(){
+    const el=$('accountNav'); if(!el)return;
+    el.textContent=token()?'Profile':'Login';
+}
+function closeMobileNav(){
+    const navCollapse=document.getElementById('navbarNav');
+    if(!navCollapse)return;
+    try{
+        if(window.bootstrap && bootstrap.Collapse){
+            const collapse=bootstrap.Collapse.getOrCreateInstance(navCollapse,{toggle:false});
+            collapse.hide();
+        }
+    }catch(e){}
+    navCollapse.classList.remove('show');
+    navCollapse.style.height='';
+    navCollapse.removeAttribute('data-bs-parent');
+    navCollapse.setAttribute('aria-hidden','true');
+    const toggler=document.querySelector('.navbar-toggler');
+    if(toggler){
+        toggler.classList.add('collapsed');
+        toggler.setAttribute('aria-expanded','false');
+    }
+}
+function openAuth(mode='login'){
+    closeMobileNav();
+    authMode=mode; $('authTitle').textContent=mode==='login'?'Student Login':'Create Student Account';
+    $('authSubmit').textContent=mode==='login'?'Login':'Register';
+    $('authToggle').textContent=mode==='login'?'Create student account':'Already have an account? Login';
+    ['nameWrap','phoneWrap','confirmWrap'].forEach(x=>$(x).classList.toggle('d-none',mode==='login'));
+    $('authMessage').innerHTML=''; showModal('authModal');
+}
+$('authToggle').addEventListener('click',()=>openAuth(authMode==='login'?'register':'login'));
+$('authForm').addEventListener('submit',async e=>{
+    e.preventDefault(); $('authMessage').innerHTML='';
+    try{
+        if(authMode==='login'){
+            const d=await apiFetch('/auth/login',{method:'POST',body:JSON.stringify({email:$('authEmail').value,password:$('authPassword').value})});
+            localStorage.setItem(TOKEN_KEY,d.access_token); hideModal('authModal'); updateAccountButton(); await loadLiveCatalog();
+        }else{
+            await apiFetch('/auth/signup',{method:'POST',body:JSON.stringify({name:$('authName').value,email:$('authEmail').value,phone:$('authPhone').value,password:$('authPassword').value,confirm_password:$('authConfirm').value})});
+            $('authMessage').innerHTML='<div class="alert alert-success">Account created. Logging you in...</div>';
+            const d=await apiFetch('/auth/login',{method:'POST',body:JSON.stringify({email:$('authEmail').value,password:$('authPassword').value})});
+            localStorage.setItem(TOKEN_KEY,d.access_token); hideModal('authModal'); updateAccountButton(); await loadLiveCatalog();
+        }
+    }catch(err){$('authMessage').innerHTML='<div class="alert alert-danger">'+escapeHtml(err.message)+'</div>'}
+});
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+async function showAccount(){
+    closeMobileNav();
+    if(!token()){openAuth();return;}
+    try{
+        const [me,purchases]=await Promise.all([apiFetch('/users/me'),apiFetch('/users/me/purchases')]);
+        $('accountPanel').innerHTML=`<div class="d-flex justify-content-between align-items-center mb-3"><div><h5 class="mb-1">${escapeHtml(me.name)}</h5><div class="text-muted">${escapeHtml(me.email)}</div></div><button class="btn btn-outline-danger btn-sm" onclick="logout()">Logout</button></div><div class="d-grid gap-2 mb-3"><button class="btn biometric-btn" onclick="registerBiometric()">🔐 Enable biometric login</button></div><hr><h6>Purchased Chapters</h6>${purchases.length?purchases.map(p=>`<div class="border rounded p-2 mb-2">${escapeHtml(p.chapter_name||('Chapter #'+p.chapter_id))}<button class="btn btn-sm btn-success float-end" onclick="openNote(${p.chapter_id})">Open</button></div>`).join(''):'<p class="text-muted">No purchases yet.</p>'}`;
+        showModal('accountModal');
+    }catch(err){localStorage.removeItem(TOKEN_KEY);openAuth();}
+}
+function logoutStudent(){localStorage.removeItem(TOKEN_KEY); updateAccountButton(); hideModal('accountModal');}
+async function loadLiveCatalog(){
+    try{
+        liveClasses=await apiFetch('/classes');
+        const sel=$('liveClassSelect'); sel.innerHTML=liveClasses.map(c=>`<option value="${c.id}">Class ${c.class_number}</option>`).join('');
+        if(liveClasses.length) await loadSubjects(Number(sel.value));
+    }catch(err){$('liveMaterialStatus').textContent='Backend not connected: '+err.message;}
+}
+async function loadSubjects(classId){
+    try{
+        liveSubjects=await apiFetch('/classes/'+classId+'/subjects');
+        $('liveSubjectSelect').innerHTML=liveSubjects.map(s=>`<option value="${s.id}">${escapeHtml(s.subject_name)}</option>`).join('')||'<option value="">No subjects</option>';
+        if(liveSubjects.length) await loadChapters(Number($('liveSubjectSelect').value)); else renderChapters([]);
+    }catch(err){$('liveMaterialStatus').textContent=err.message;}
+}
+async function loadChapters(subjectId){
+    try{liveChapters=await apiFetch('/subjects/'+subjectId+'/chapters'); renderChapters(liveChapters); populateTestChapters(liveChapters);}catch(err){$('liveMaterialStatus').textContent=err.message;}
+}
+function renderChapters(chapters){
+    $('liveMaterialStatus').textContent=chapters.length?`${chapters.length} chapter(s) available`:'No chapters available for this subject yet.';
+    $('chapterGrid').innerHTML=chapters.map(c=>`<div class="col-md-6 col-lg-4"><div class="card h-100 shadow-sm"><div class="card-body"><span class="badge text-bg-secondary mb-2">Chapter ${c.chapter_number}</span><h5>${escapeHtml(c.chapter_name)}</h5><p class="text-muted small">${escapeHtml(c.description||'Protected study material')}</p><div class="d-flex justify-content-between align-items-center"><strong>₹${c.price}</strong><button class="btn btn-primary btn-sm" onclick="openChapterAction(${c.id})">${token()?'Buy / Open':'Login to Access'}</button></div></div></div></div>`).join('');
+}
+$('liveClassSelect').addEventListener('change',e=>loadSubjects(Number(e.target.value)));
+$('liveSubjectSelect').addEventListener('change',e=>loadChapters(Number(e.target.value)));
+function openChapterAction(id){selectedChapterId=id;if(!token()){openAuth();return;} checkChapterAccess(id);}
+async function checkChapterAccess(id){
+    try{await apiFetch('/student/notes/'+id);openNote(id);}catch(err){if(String(err.message).toLowerCase().includes('access')) openPayment(id); else openPayment(id);}
+}
+async function openPayment(id){
+    try{
+        const c=await apiFetch('/chapters/'+id); const p=await apiFetch('/payments/create',{method:'POST',body:JSON.stringify({chapter_id:id})});
+        $('paymentPanel').innerHTML=`<h5>${escapeHtml(c.chapter_name)}</h5><p>Amount: <strong>₹${p.amount}</strong></p><div class="text-center mb-3"><img src="${p.qr_code}" alt="UPI QR" style="max-width:230px;width:100%" class="border rounded p-2"><div class="small text-muted mt-2">UPI: ${escapeHtml(p.upi_identifier)}</div></div><div class="d-grid mb-3"><button class="btn btn-success" onclick="biometricPaymentConfirm('${p.payment_id}','${p.deep_link}')">🔐 Verify & Open UPI App</button></div><div class="alert alert-info small">Payment karne ke baad UTR/reference number yahan submit karein. Admin verification ke baad chapter unlock hoga.</div><input id="utrInput" class="form-control mb-2" placeholder="UPI UTR / transaction reference"><button class="btn btn-primary w-100" onclick="submitUTR('${p.payment_id}')">Submit Payment Proof</button><div id="paymentMsg" class="mt-2"></div>`;
+        showModal('paymentModal');
+    }catch(err){alert(err.message);}
+}
+async function submitUTR(paymentId){
+    const utr=$('utrInput').value.trim(); if(!utr)return;
+    try{await apiFetch('/payments/submit-proof',{method:'POST',body:JSON.stringify({payment_id:paymentId,utr})});$('paymentMsg').innerHTML='<div class="alert alert-success">Payment proof submitted. Admin verification pending.</div>';}catch(err){$('paymentMsg').innerHTML='<div class="alert alert-danger">'+escapeHtml(err.message)+'</div>';}
+}
+async function openNote(id){
+    try{
+        const note=await apiFetch('/student/notes/'+id);
+        const session=await apiFetch('/student/notes/'+id+'/session',{method:'POST'}); noteSessionId=id;
+        $('noteTitle').textContent=note.chapter_name; $('noteStatus').innerHTML=`<strong>Authorised for ${escapeHtml(note.watermark.name)}</strong> · session expires ${new Date(session.expires_at).toLocaleString()}`;
+        $('noteFrame').src=note.google_drive_url || ('https://drive.google.com/file/d/'+note.google_drive_file_id+'/preview');
+        showModal('noteModal');
+        clearInterval(noteHeartbeat); noteHeartbeat=setInterval(()=>apiFetch('/student/notes/'+id+'/heartbeat',{method:'POST'}).catch(()=>closeNoteSession()),5*60*1000);
+    }catch(err){alert(err.message);}
+}
+async function closeNoteSession(){if(!noteSessionId)return;const id=noteSessionId;noteSessionId=null;clearInterval(noteHeartbeat);$('noteFrame').src='about:blank';try{await apiFetch('/student/notes/'+id+'/close',{method:'POST'});}catch{} }
+const originalTestBank={
+  Maths:["Simplify: 3x + 5x - 2.","Solve: 2x + 7 = 19.","Find the HCF of 36 and 48.","Find the area of a triangle with base 12 cm and height 8 cm.","Factorise: x² - 9.","Find the value of 15% of 240.","If a:b = 2:3 and b = 18, find a.","Find the perimeter of a rectangle of length 12 cm and breadth 7 cm.","Solve: x² - 5x + 6 = 0.","Find the distance between (0,0) and (3,4).","Evaluate: 2³ + 3².","Find the mean of 4, 6, 8, 10 and 12.","What is the slope of the line y = 3x + 2?","Find the circumference of a circle of radius 7 cm using π = 22/7.","If sin θ = 3/5 for an acute angle, find cos θ."],
+  Science:["State Newton's second law of motion.","What is the SI unit of electric current?","Define photosynthesis.","What is the chemical formula of water?","Name the organelle known as the powerhouse of the cell.","What is meant by acceleration?","State Ohm's law.","What is an acid? Give one example.","Define heredity.","What is the function of red blood cells?","Differentiate between a physical and chemical change.","What is refraction of light?","Name one renewable source of energy.","What is the pH of a neutral solution at room temperature?","State the law of conservation of mass."]
+};
+function populateTestChapters(chapters){$('testChapter').innerHTML='<option value="">Select chapter</option>'+chapters.map(c=>`<option value="${c.id}" data-name="${escapeHtml(c.chapter_name)}" data-number="${c.chapter_number}">${c.chapter_number}. ${escapeHtml(c.chapter_name)}</option>`).join('');}
+async function generateAITest(){
+    const cls=Number($('testClass').value), subject=$('testSubject').value, opt=$('testChapter').selectedOptions[0];
+    if(!opt||!opt.value){alert('Live catalog se chapter select karein.');return;}
+    try{
+        const d=await apiFetch('/quizzes/generate',{method:'POST',body:JSON.stringify({class_number:cls,subject_name:(subject==='Maths'?'Mathematics':subject==='Science'?'Physics':subject),chapter_number:Number(opt.dataset.number),chapter_name:opt.dataset.name,question_count:Number($('questionCount').value),difficulty:$('testDifficulty').value})});
+        $('testMeta').textContent=`AI Test • Class ${cls} • ${subject} • ${opt.dataset.name}`;
+        $('questions').innerHTML=d.questions.map((q,i)=>`<div class="question-item"><strong>Q${i+1}.</strong> ${escapeHtml(q.question)}<ol type="A">${q.options.map(o=>`<li>${escapeHtml(o)}</li>`).join('')}</ol><details><summary>Answer & explanation</summary><p><strong>${escapeHtml(q.answer)}</strong><br>${escapeHtml(q.explanation)}</p></details></div>`).join('');
+    }catch(err){alert('AI test: '+err.message);}
+}
+// Existing local test generator remains as offline fallback.
+function generateTest(){
+    const board=$('testBoard').value, cls=$('testClass').value, subject=$('testSubject').value, count=Number($('questionCount').value), bank=[...(originalTestBank[subject]||[])];
+    for(let i=bank.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bank[i],bank[j]]=[bank[j],bank[i]];}
+    const selected=bank.slice(0,Math.min(count,bank.length)); $('testMeta').textContent=`${board} • Class ${cls} • ${subject} • Practice Test • Aditya Library Tuition Centre`;
+    $('questions').innerHTML=selected.map((q,i)=>`<div class="question-item"><strong>Q${i+1}.</strong> ${escapeHtml(q)}<div class="mt-3 text-muted">Answer: ________________________________________________</div></div>`).join('');
+}
+function downloadPrompt(type){
+    const subject=type==='Maths'?'Mathematics':type==='Science'?'Physics':null;
+    if(type==='Test Series'){document.querySelector('#test-generator').scrollIntoView({behavior:'smooth'});return;}
+    if(subject){const match=liveSubjects.find(x=>x.subject_name.toLowerCase().includes(subject.toLowerCase()));if(match){$('liveSubjectSelect').value=match.id;loadChapters(match.id);}document.querySelector('#live-material-browser').scrollIntoView({behavior:'smooth'});}
+}
+// Navbar account control
+(function(){const nav=document.querySelector('#navbarNav .navbar-nav');if(nav){const li=document.createElement('li');li.className='nav-item';li.innerHTML='<button id="accountNav" type="button" class="btn btn-outline-light btn-sm ms-lg-2 login-pill">Login</button>';nav.appendChild(li);$('accountNav').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeMobileNav();setTimeout(()=>showAccount(),180);});}updateAccountButton();})();
+$('testClass').addEventListener('change',async e=>{const c=liveClasses.find(x=>x.class_number===Number(e.target.value));if(c){$('liveClassSelect').value=c.id;await loadSubjects(c.id);}});
+$('testSubject').addEventListener('change',()=>{const s=liveSubjects.find(x=>x.subject_name.toLowerCase().includes($('testSubject').value.toLowerCase()));if(s)loadChapters(s.id);});
+document.getElementById('year').textContent=new Date().getFullYear();
+setTimeout(initGoogle,1200);setInterval(initGoogle,3000);
+// Existing class filters
+const filterButtons=document.querySelectorAll('.filter-btn'), materialCards=document.querySelectorAll('.material-card');
+function filterMaterials(classNumber){materialCards.forEach(card=>{const classes=card.dataset.classes.split(',');card.classList.toggle('hidden',classNumber!=='all'&&!classes.includes(classNumber));});filterButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.filter===classNumber));}
+filterButtons.forEach(button=>button.addEventListener('click',()=>filterMaterials(button.dataset.filter)));
+document.querySelectorAll('.class-link').forEach(link=>link.addEventListener('click',async()=>{const selectedClass=link.dataset.class;filterMaterials(selectedClass);const c=liveClasses.find(x=>x.class_number===Number(selectedClass));if(c){$('liveClassSelect').value=c.id;await loadSubjects(c.id);}}));
+loadLiveCatalog();
+
+// ===== Galaxy + Solar System visual engine =====
+(()=>{
+ const c=document.getElementById('spaceCanvas'); if(!c)return; const ctx=c.getContext('2d');
+ let W=0,H=0,DPR=1,stars=[],planets=[];
+ const rand=(a,b)=>a+Math.random()*(b-a);
+ function resize(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0);stars=Array.from({length:Math.min(520,Math.floor(W*H/3000))},()=>({x:Math.random()*W,y:Math.random()*H,r:rand(.25,1.7),a:rand(.2,.9),p:rand(0,Math.PI*2)}));planets=[{r:Math.min(W,H)*.10,d:Math.min(W,H)*.20,s:rand(.00018,.00028),size:4},{r:Math.min(W,H)*.17,d:Math.min(W,H)*.31,s:-.00012,size:6},{r:Math.min(W,H)*.25,d:Math.min(W,H)*.43,s:.00008,size:9}];}
+ function draw(t){ctx.clearRect(0,0,W,H); const cx=W*.52,cy=H*.47;
+  const neb=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*.55);neb.addColorStop(0,'rgba(90,120,255,.12)');neb.addColorStop(.35,'rgba(130,60,255,.07)');neb.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=neb;ctx.fillRect(0,0,W,H);
+  for(const q of stars){const tw=.55+.45*Math.sin(t*.0015+q.p);ctx.globalAlpha=q.a*tw;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(q.x,q.y,q.r,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+  ctx.strokeStyle='rgba(99,247,255,.10)';ctx.lineWidth=1;
+  for(const p of planets){ctx.beginPath();ctx.ellipse(cx,cy,p.d,p.d*.32,Math.PI*.05,0,Math.PI*2);ctx.stroke();}
+  const sun=ctx.createRadialGradient(cx-3,cy-3,1,cx,cy,18);sun.addColorStop(0,'#fff');sun.addColorStop(.3,'#63f7ff');sun.addColorStop(1,'rgba(99,247,255,0)');ctx.fillStyle=sun;ctx.beginPath();ctx.arc(cx,cy,22,0,Math.PI*2);ctx.fill();
+  planets.forEach((p,i)=>{const a=t*p.s*(i%2?1:-1)+i*2;const x=cx+Math.cos(a)*p.d,y=cy+Math.sin(a)*p.d*.32;const g=ctx.createRadialGradient(x-2,y-2,1,x,y,p.size+2);g.addColorStop(0,'#fff');g.addColorStop(.25,i===1?'#a78bfa':'#63f7ff');g.addColorStop(1,'rgba(70,90,255,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,p.size+2,0,Math.PI*2);ctx.fill();});
+  requestAnimationFrame(draw);
+ }
+ addEventListener('resize',resize,{passive:true});resize();requestAnimationFrame(draw);
+})();
+// Dynamic Island live clock/status
+(()=>{const label=document.getElementById('islandLabel'),time=document.getElementById('islandTime'); if(!label)return; const tick=()=>{time.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}; tick();setInterval(tick,1000); const states=['Aditya Library','Study Mode','Live Classes','Secure Learning'];let i=0;setInterval(()=>{i=(i+1)%states.length;label.style.opacity='0';setTimeout(()=>{label.textContent=states[i];label.style.opacity='.86'},180)},4200);})();
+// Add subtle rotating icon treatment to feature/action icons without changing functionality
+window.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.icon-circle, .feature-box .bi').forEach((el,i)=>{if(!el.classList.contains('rotating-icon'))el.classList.add('rotating-icon');if(i%3===0)el.classList.add('spin')}); const brand=document.querySelector('.navbar-brand'); if(brand) brand.classList.remove('rotating-icon','spin');});
+
+// Close the mobile navigation menu after selecting a page.
+document.addEventListener('DOMContentLoaded',()=>{
+  const navCollapse=document.getElementById('navbarNav');
+  if(!navCollapse || !window.bootstrap)return;
+  navCollapse.querySelectorAll('.nav-link').forEach(link=>{
+    link.addEventListener('click',closeMobileNav);
+  });
+});
+</script>
+
+</body>
 </html>
