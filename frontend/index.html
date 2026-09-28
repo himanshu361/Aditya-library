@@ -738,7 +738,7 @@ body > .modal.show {
                         <li class="mb-2">✅ Previous Year Questions</li>
                         <li class="mb-2">✅ Refresher Course</li>
                     </ul>
-                    <button class="btn btn-primary w-100" onclick="downloadPrompt('Maths')">Download Material</button>
+                    <button class="btn btn-primary w-100">Download Material</button>
                 </div>
             </div>
 
@@ -756,7 +756,7 @@ body > .modal.show {
                         <li class="mb-2">✅ Board PYQs</li>
                         <li class="mb-2">✅ Quick Revision Sheets</li>
                     </ul>
-                    <button class="btn btn-success w-100" onclick="downloadPrompt('Science')">Download Material</button>
+                    <button class="btn btn-success w-100">Download Material</button>
                 </div>
             </div>
 
@@ -774,7 +774,7 @@ body > .modal.show {
                         <li class="mb-2">✅ Answer Key</li>
                         <li class="mb-2">✅ Analysis Report</li>
                     </ul>
-                    <button class="btn btn-warning w-100" onclick="downloadPrompt('Test Series')">Start Test</button>
+                    <button class="btn btn-warning w-100">Start Test</button>
                 </div>
             </div>
 
@@ -895,9 +895,9 @@ body > .modal.show {
                     </select>
                 </div>
                 <div class="col-md-8 d-flex align-items-end gap-2">
-                    <button class="btn btn-primary" onclick="generateTest()">Generate Test</button>
-                    <button class="btn btn-success" onclick="generateAITest()">AI Test</button>
-                    <button class="btn btn-outline-secondary" onclick="window.print()">Print Test</button>
+                    <button class="btn btn-primary">Generate Test</button>
+                    <button class="btn btn-success">AI Test</button>
+                    <button class="btn btn-outline-secondary">Print Test</button>
                 </div>
             </div>
 
@@ -991,8 +991,8 @@ body > .modal.show {
 <!-- Connected account/payment/note UI -->
 <div class="modal fade" id="accountModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Student Account</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="accountPanel"></div></div></div></div></div>
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Purchase Study Material</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="paymentPanel"></div></div></div></div>
-<div class="modal fade" id="noteModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="noteTitle">Protected Note</h5><button class="btn-close" data-bs-dismiss="modal" onclick="closeNoteSession()"></button></div><div class="modal-body"><div id="noteStatus" class="alert alert-info">Authorising...</div><div class="ratio ratio-16x9"><iframe id="noteFrame" src="about:blank" title="Study note" allow="fullscreen"></iframe></div></div></div></div></div>
-<div class="modal fade auth-modal-ios" id="authModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="authTitle">Student Login</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="authMessage"></div><form id="authForm"><div id="nameWrap" class="mb-2 d-none"><input id="authName" class="form-control" placeholder="Full name"></div><div class="mb-2"><input id="authEmail" type="email" class="form-control" placeholder="Email" required></div><div id="phoneWrap" class="mb-2 d-none"><input id="authPhone" class="form-control" placeholder="Phone number"></div><div class="mb-2"><input id="authPassword" type="password" class="form-control" placeholder="Password" required minlength="6"></div><div id="confirmWrap" class="mb-2 d-none"><input id="authConfirm" type="password" class="form-control" placeholder="Confirm password"></div><button class="btn btn-primary w-100" type="submit" id="authSubmit">Login</button></form><div class="d-flex align-items-center gap-2 my-3"><hr class="flex-grow-1"><span class="small text-muted">OR</span><hr class="flex-grow-1"></div><div id="googleSignInButton" class="d-flex justify-content-center"></div><button class="btn biometric-btn w-100 mt-2" type="button" onclick="biometricLogin()">🔐 Continue with Biometrics</button><button class="btn btn-link w-100 mt-2" id="authToggle" type="button">Create student account</button><div class="small text-muted text-center mt-2">Biometric login uses your device's secure authenticator (Face ID, Touch ID, Windows Hello or Android biometric where supported).</div></div></div></div></div>
+<div class="modal fade" id="noteModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="noteTitle">Protected Note</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="noteStatus" class="alert alert-info">Authorising...</div><div class="ratio ratio-16x9"><iframe id="noteFrame" src="about:blank" title="Study note" allow="fullscreen"></iframe></div></div></div></div></div>
+<div class="modal fade auth-modal-ios" id="authModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="authTitle">Student Login</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div id="authMessage"></div><form id="authForm"><div id="nameWrap" class="mb-2 d-none"><input id="authName" class="form-control" placeholder="Full name"></div><div class="mb-2"><input id="authEmail" type="email" class="form-control" placeholder="Email" required></div><div id="phoneWrap" class="mb-2 d-none"><input id="authPhone" class="form-control" placeholder="Phone number"></div><div class="mb-2"><input id="authPassword" type="password" class="form-control" placeholder="Password" required minlength="6"></div><div id="confirmWrap" class="mb-2 d-none"><input id="authConfirm" type="password" class="form-control" placeholder="Confirm password"></div><button class="btn btn-primary w-100" type="submit" id="authSubmit">Login</button></form><div class="d-flex align-items-center gap-2 my-3"><hr class="flex-grow-1"><span class="small text-muted">OR</span><hr class="flex-grow-1"></div><div id="googleSignInButton" class="d-flex justify-content-center"></div><button class="btn biometric-btn w-100 mt-2" type="button">🔐 Continue with Biometrics</button><button class="btn btn-link w-100 mt-2" id="authToggle" type="button">Create student account</button><div class="small text-muted text-center mt-2">Biometric login uses your device's secure authenticator (Face ID, Touch ID, Windows Hello or Android biometric where supported).</div></div></div></div></div>
 
 
 <!-- Footer -->
@@ -1004,223 +1004,6 @@ body > .modal.show {
         <p class="mb-0">&copy; <span id="year"></span> Aditya Library. All Rights Reserved.</p>
     </div>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="api-config.js"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
-<script>
-const API_BASE=(window.ADITYA_API_BASE || localStorage.getItem('aditya_api_base') || '/api').replace(/\/$/,'');
-const TOKEN_KEY='aditya_access_token';
-const GOOGLE_CLIENT_ID=window.ADITYA_GOOGLE_CLIENT_ID || '';
-let googleInitialized=false;
-let liveClasses=[], liveSubjects=[], liveChapters=[], selectedChapterId=null, noteSessionId=null, noteHeartbeat=null, authMode='login';
-const $=id=>document.getElementById(id);
-const token=()=>localStorage.getItem(TOKEN_KEY);
-function showModal(id){
-    const el=$(id);
-    if(!el || !window.bootstrap || !bootstrap.Modal)return;
-    document.querySelectorAll('.navbar-collapse.show').forEach(n=>n.classList.remove('show'));
-    bootstrap.Modal.getOrCreateInstance(el).show();
-}
-function hideModal(id){bootstrap.Modal.getOrCreateInstance($(id)).hide()}
-async function apiFetch(path, options={}){
-    const headers=new Headers(options.headers||{});
-    if(options.body && !headers.has('Content-Type') && !(options.body instanceof FormData)) headers.set('Content-Type','application/json');
-    if(token()) headers.set('Authorization','Bearer '+token());
-    const response=await fetch(API_BASE+path,{...options,headers});
-    let data={}; try{data=await response.json()}catch{}
-    if(response.status===401){localStorage.removeItem(TOKEN_KEY); updateAccountButton();}
-    if(!response.ok) throw new Error(data.detail||data.message||`Request failed (${response.status})`);
-    return data;
-}
-
-function b64ToBytes(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const raw=atob(s);return Uint8Array.from(raw,c=>c.charCodeAt(0));}
-function bytesToB64(buf){let s='';new Uint8Array(buf).forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
-function publicKeyFromOptions(o){const x=structuredClone(o);x.challenge=b64ToBytes(x.challenge);if(x.user)x.user.id=b64ToBytes(x.user.id);if(x.excludeCredentials)x.excludeCredentials=x.excludeCredentials.map(c=>({...c,id:b64ToBytes(c.id)}));return x;}
-function publicKeyAuthOptions(o){const x=structuredClone(o);x.challenge=b64ToBytes(x.challenge);if(x.allowCredentials)x.allowCredentials=x.allowCredentials.map(c=>({...c,id:b64ToBytes(c.id)}));return x;}
-function credentialToJSON(c){return {id:c.id,rawId:bytesToB64(c.rawId),type:c.type,response:{clientDataJSON:bytesToB64(c.response.clientDataJSON),attestationObject:c.response.attestationObject?bytesToB64(c.response.attestationObject):undefined,authenticatorData:c.response.authenticatorData?bytesToB64(c.response.authenticatorData):undefined,signature:c.response.signature?bytesToB64(c.response.signature):undefined,userHandle:c.response.userHandle?bytesToB64(c.response.userHandle):null},clientExtensionResults:c.getClientExtensionResults?c.getClientExtensionResults():{},authenticatorAttachment:c.authenticatorAttachment||'platform'};}
-function initGoogle(){if(googleInitialized||!window.google||!GOOGLE_CLIENT_ID)return;googleInitialized=true;google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID,callback:async r=>{try{const d=await apiFetch('/auth/google',{method:'POST',body:JSON.stringify({credential:r.credential})});localStorage.setItem(TOKEN_KEY,d.access_token);hideModal('authModal');updateAccountButton();await loadLiveCatalog();}catch(e){$('authMessage').innerHTML='<div class="alert alert-danger">'+escapeHtml(e.message)+'</div>';}}});google.accounts.id.renderButton($('googleSignInButton'),{theme:'outline',size:'large',shape:'pill',width:320,text:'continue_with'});}
-async function registerBiometric(){if(!token()){openAuth();return;}if(!window.PublicKeyCredential){alert('This browser/device does not support biometric WebAuthn.');return;}try{const options=await apiFetch('/auth/biometric/register/options',{method:'POST'});const cred=await navigator.credentials.create({publicKey:publicKeyFromOptions(options)});await apiFetch('/auth/biometric/register/verify',{method:'POST',body:JSON.stringify(credentialToJSON(cred))});alert('Biometric login enabled on this device.');}catch(e){alert('Biometric setup: '+e.message);}}
-async function biometricLogin(){if(!window.PublicKeyCredential){alert('Biometric WebAuthn is not supported on this browser/device.');return;}const email=$('authEmail').value.trim().toLowerCase();if(!email){$('authMessage').innerHTML='<div class="alert alert-warning">Pehle email enter karein, phir biometric login.</div>';return;}try{const d=await apiFetch('/auth/biometric/login/options',{method:'POST',body:JSON.stringify({email})});const cred=await navigator.credentials.get({publicKey:publicKeyAuthOptions(d.options)});const out=await apiFetch('/auth/biometric/login/verify',{method:'POST',body:JSON.stringify({user_id:d.user_id,credential:credentialToJSON(cred)})});localStorage.setItem(TOKEN_KEY,out.access_token);hideModal('authModal');updateAccountButton();await loadLiveCatalog();}catch(e){$('authMessage').innerHTML='<div class="alert alert-danger">Biometric login: '+escapeHtml(e.message)+'</div>';}}
-async function biometricPaymentConfirm(paymentId,deepLink){if(!window.PublicKeyCredential){alert('Is device par biometric verification available nahi hai.');return;}try{const me=await apiFetch('/users/me');const d=await apiFetch('/auth/biometric/login/options',{method:'POST',body:JSON.stringify({email:me.email})});const cred=await navigator.credentials.get({publicKey:publicKeyAuthOptions(d.options)});await apiFetch('/auth/biometric/login/verify',{method:'POST',body:JSON.stringify({user_id:d.user_id,credential:credentialToJSON(cred)})});location.href=deepLink;}catch(e){alert('Payment biometric verification: '+e.message+'. Pehle Student Profile se biometric enable karein.');}}
-
-function updateAccountButton(){
-    const el=$('accountNav'); if(!el)return;
-    el.textContent=token()?'Profile':'Login';
-}
-function closeMobileNav(){
-    const navCollapse=document.getElementById('navbarNav');
-    if(!navCollapse)return;
-    try{
-        if(window.bootstrap && bootstrap.Collapse){
-            const collapse=bootstrap.Collapse.getOrCreateInstance(navCollapse,{toggle:false});
-            collapse.hide();
-        }
-    }catch(e){}
-    navCollapse.classList.remove('show');
-    navCollapse.style.height='';
-    navCollapse.removeAttribute('data-bs-parent');
-    navCollapse.setAttribute('aria-hidden','true');
-    const toggler=document.querySelector('.navbar-toggler');
-    if(toggler){
-        toggler.classList.add('collapsed');
-        toggler.setAttribute('aria-expanded','false');
-    }
-}
-function openAuth(mode='login'){
-    closeMobileNav();
-    authMode=mode; $('authTitle').textContent=mode==='login'?'Student Login':'Create Student Account';
-    $('authSubmit').textContent=mode==='login'?'Login':'Register';
-    $('authToggle').textContent=mode==='login'?'Create student account':'Already have an account? Login';
-    ['nameWrap','phoneWrap','confirmWrap'].forEach(x=>$(x).classList.toggle('d-none',mode==='login'));
-    $('authMessage').innerHTML=''; showModal('authModal');
-}
-$('authToggle').addEventListener('click',()=>openAuth(authMode==='login'?'register':'login'));
-$('authForm').addEventListener('submit',async e=>{
-    e.preventDefault(); $('authMessage').innerHTML='';
-    try{
-        if(authMode==='login'){
-            const d=await apiFetch('/auth/login',{method:'POST',body:JSON.stringify({email:$('authEmail').value,password:$('authPassword').value})});
-            localStorage.setItem(TOKEN_KEY,d.access_token); hideModal('authModal'); updateAccountButton(); await loadLiveCatalog();
-        }else{
-            await apiFetch('/auth/signup',{method:'POST',body:JSON.stringify({name:$('authName').value,email:$('authEmail').value,phone:$('authPhone').value,password:$('authPassword').value,confirm_password:$('authConfirm').value})});
-            $('authMessage').innerHTML='<div class="alert alert-success">Account created. Logging you in...</div>';
-            const d=await apiFetch('/auth/login',{method:'POST',body:JSON.stringify({email:$('authEmail').value,password:$('authPassword').value})});
-            localStorage.setItem(TOKEN_KEY,d.access_token); hideModal('authModal'); updateAccountButton(); await loadLiveCatalog();
-        }
-    }catch(err){$('authMessage').innerHTML='<div class="alert alert-danger">'+escapeHtml(err.message)+'</div>'}
-});
-function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-async function showAccount(){
-    closeMobileNav();
-    if(!token()){openAuth();return;}
-    try{
-        const [me,purchases]=await Promise.all([apiFetch('/users/me'),apiFetch('/users/me/purchases')]);
-        $('accountPanel').innerHTML=`<div class="d-flex justify-content-between align-items-center mb-3"><div><h5 class="mb-1">${escapeHtml(me.name)}</h5><div class="text-muted">${escapeHtml(me.email)}</div></div><button class="btn btn-outline-danger btn-sm" onclick="logout()">Logout</button></div><div class="d-grid gap-2 mb-3"><button class="btn biometric-btn" onclick="registerBiometric()">🔐 Enable biometric login</button></div><hr><h6>Purchased Chapters</h6>${purchases.length?purchases.map(p=>`<div class="border rounded p-2 mb-2">${escapeHtml(p.chapter_name||('Chapter #'+p.chapter_id))}<button class="btn btn-sm btn-success float-end" onclick="openNote(${p.chapter_id})">Open</button></div>`).join(''):'<p class="text-muted">No purchases yet.</p>'}`;
-        showModal('accountModal');
-    }catch(err){localStorage.removeItem(TOKEN_KEY);openAuth();}
-}
-function logoutStudent(){localStorage.removeItem(TOKEN_KEY); updateAccountButton(); hideModal('accountModal');}
-async function loadLiveCatalog(){
-    try{
-        liveClasses=await apiFetch('/classes');
-        const sel=$('liveClassSelect'); sel.innerHTML=liveClasses.map(c=>`<option value="${c.id}">Class ${c.class_number}</option>`).join('');
-        if(liveClasses.length) await loadSubjects(Number(sel.value));
-    }catch(err){$('liveMaterialStatus').textContent='Backend not connected: '+err.message;}
-}
-async function loadSubjects(classId){
-    try{
-        liveSubjects=await apiFetch('/classes/'+classId+'/subjects');
-        $('liveSubjectSelect').innerHTML=liveSubjects.map(s=>`<option value="${s.id}">${escapeHtml(s.subject_name)}</option>`).join('')||'<option value="">No subjects</option>';
-        if(liveSubjects.length) await loadChapters(Number($('liveSubjectSelect').value)); else renderChapters([]);
-    }catch(err){$('liveMaterialStatus').textContent=err.message;}
-}
-async function loadChapters(subjectId){
-    try{liveChapters=await apiFetch('/subjects/'+subjectId+'/chapters'); renderChapters(liveChapters); populateTestChapters(liveChapters);}catch(err){$('liveMaterialStatus').textContent=err.message;}
-}
-function renderChapters(chapters){
-    $('liveMaterialStatus').textContent=chapters.length?`${chapters.length} chapter(s) available`:'No chapters available for this subject yet.';
-    $('chapterGrid').innerHTML=chapters.map(c=>`<div class="col-md-6 col-lg-4"><div class="card h-100 shadow-sm"><div class="card-body"><span class="badge text-bg-secondary mb-2">Chapter ${c.chapter_number}</span><h5>${escapeHtml(c.chapter_name)}</h5><p class="text-muted small">${escapeHtml(c.description||'Protected study material')}</p><div class="d-flex justify-content-between align-items-center"><strong>₹${c.price}</strong><button class="btn btn-primary btn-sm" onclick="openChapterAction(${c.id})">${token()?'Buy / Open':'Login to Access'}</button></div></div></div></div>`).join('');
-}
-$('liveClassSelect').addEventListener('change',e=>loadSubjects(Number(e.target.value)));
-$('liveSubjectSelect').addEventListener('change',e=>loadChapters(Number(e.target.value)));
-function openChapterAction(id){selectedChapterId=id;if(!token()){openAuth();return;} checkChapterAccess(id);}
-async function checkChapterAccess(id){
-    try{await apiFetch('/student/notes/'+id);openNote(id);}catch(err){if(String(err.message).toLowerCase().includes('access')) openPayment(id); else openPayment(id);}
-}
-async function openPayment(id){
-    try{
-        const c=await apiFetch('/chapters/'+id); const p=await apiFetch('/payments/create',{method:'POST',body:JSON.stringify({chapter_id:id})});
-        $('paymentPanel').innerHTML=`<h5>${escapeHtml(c.chapter_name)}</h5><p>Amount: <strong>₹${p.amount}</strong></p><div class="text-center mb-3"><img src="${p.qr_code}" alt="UPI QR" style="max-width:230px;width:100%" class="border rounded p-2"><div class="small text-muted mt-2">UPI: ${escapeHtml(p.upi_identifier)}</div></div><div class="d-grid mb-3"><button class="btn btn-success" onclick="biometricPaymentConfirm('${p.payment_id}','${p.deep_link}')">🔐 Verify & Open UPI App</button></div><div class="alert alert-info small">Payment karne ke baad UTR/reference number yahan submit karein. Admin verification ke baad chapter unlock hoga.</div><input id="utrInput" class="form-control mb-2" placeholder="UPI UTR / transaction reference"><button class="btn btn-primary w-100" onclick="submitUTR('${p.payment_id}')">Submit Payment Proof</button><div id="paymentMsg" class="mt-2"></div>`;
-        showModal('paymentModal');
-    }catch(err){alert(err.message);}
-}
-async function submitUTR(paymentId){
-    const utr=$('utrInput').value.trim(); if(!utr)return;
-    try{await apiFetch('/payments/submit-proof',{method:'POST',body:JSON.stringify({payment_id:paymentId,utr})});$('paymentMsg').innerHTML='<div class="alert alert-success">Payment proof submitted. Admin verification pending.</div>';}catch(err){$('paymentMsg').innerHTML='<div class="alert alert-danger">'+escapeHtml(err.message)+'</div>';}
-}
-async function openNote(id){
-    try{
-        const note=await apiFetch('/student/notes/'+id);
-        const session=await apiFetch('/student/notes/'+id+'/session',{method:'POST'}); noteSessionId=id;
-        $('noteTitle').textContent=note.chapter_name; $('noteStatus').innerHTML=`<strong>Authorised for ${escapeHtml(note.watermark.name)}</strong> · session expires ${new Date(session.expires_at).toLocaleString()}`;
-        $('noteFrame').src=note.google_drive_url || ('https://drive.google.com/file/d/'+note.google_drive_file_id+'/preview');
-        showModal('noteModal');
-        clearInterval(noteHeartbeat); noteHeartbeat=setInterval(()=>apiFetch('/student/notes/'+id+'/heartbeat',{method:'POST'}).catch(()=>closeNoteSession()),5*60*1000);
-    }catch(err){alert(err.message);}
-}
-async function closeNoteSession(){if(!noteSessionId)return;const id=noteSessionId;noteSessionId=null;clearInterval(noteHeartbeat);$('noteFrame').src='about:blank';try{await apiFetch('/student/notes/'+id+'/close',{method:'POST'});}catch{} }
-const originalTestBank={
-  Maths:["Simplify: 3x + 5x - 2.","Solve: 2x + 7 = 19.","Find the HCF of 36 and 48.","Find the area of a triangle with base 12 cm and height 8 cm.","Factorise: x² - 9.","Find the value of 15% of 240.","If a:b = 2:3 and b = 18, find a.","Find the perimeter of a rectangle of length 12 cm and breadth 7 cm.","Solve: x² - 5x + 6 = 0.","Find the distance between (0,0) and (3,4).","Evaluate: 2³ + 3².","Find the mean of 4, 6, 8, 10 and 12.","What is the slope of the line y = 3x + 2?","Find the circumference of a circle of radius 7 cm using π = 22/7.","If sin θ = 3/5 for an acute angle, find cos θ."],
-  Science:["State Newton's second law of motion.","What is the SI unit of electric current?","Define photosynthesis.","What is the chemical formula of water?","Name the organelle known as the powerhouse of the cell.","What is meant by acceleration?","State Ohm's law.","What is an acid? Give one example.","Define heredity.","What is the function of red blood cells?","Differentiate between a physical and chemical change.","What is refraction of light?","Name one renewable source of energy.","What is the pH of a neutral solution at room temperature?","State the law of conservation of mass."]
-};
-function populateTestChapters(chapters){$('testChapter').innerHTML='<option value="">Select chapter</option>'+chapters.map(c=>`<option value="${c.id}" data-name="${escapeHtml(c.chapter_name)}" data-number="${c.chapter_number}">${c.chapter_number}. ${escapeHtml(c.chapter_name)}</option>`).join('');}
-async function generateAITest(){
-    const cls=Number($('testClass').value), subject=$('testSubject').value, opt=$('testChapter').selectedOptions[0];
-    if(!opt||!opt.value){alert('Live catalog se chapter select karein.');return;}
-    try{
-        const d=await apiFetch('/quizzes/generate',{method:'POST',body:JSON.stringify({class_number:cls,subject_name:(subject==='Maths'?'Mathematics':subject==='Science'?'Physics':subject),chapter_number:Number(opt.dataset.number),chapter_name:opt.dataset.name,question_count:Number($('questionCount').value),difficulty:$('testDifficulty').value})});
-        $('testMeta').textContent=`AI Test • Class ${cls} • ${subject} • ${opt.dataset.name}`;
-        $('questions').innerHTML=d.questions.map((q,i)=>`<div class="question-item"><strong>Q${i+1}.</strong> ${escapeHtml(q.question)}<ol type="A">${q.options.map(o=>`<li>${escapeHtml(o)}</li>`).join('')}</ol><details><summary>Answer & explanation</summary><p><strong>${escapeHtml(q.answer)}</strong><br>${escapeHtml(q.explanation)}</p></details></div>`).join('');
-    }catch(err){alert('AI test: '+err.message);}
-}
-// Existing local test generator remains as offline fallback.
-function generateTest(){
-    const board=$('testBoard').value, cls=$('testClass').value, subject=$('testSubject').value, count=Number($('questionCount').value), bank=[...(originalTestBank[subject]||[])];
-    for(let i=bank.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bank[i],bank[j]]=[bank[j],bank[i]];}
-    const selected=bank.slice(0,Math.min(count,bank.length)); $('testMeta').textContent=`${board} • Class ${cls} • ${subject} • Practice Test • Aditya Library Tuition Centre`;
-    $('questions').innerHTML=selected.map((q,i)=>`<div class="question-item"><strong>Q${i+1}.</strong> ${escapeHtml(q)}<div class="mt-3 text-muted">Answer: ________________________________________________</div></div>`).join('');
-}
-function downloadPrompt(type){
-    const subject=type==='Maths'?'Mathematics':type==='Science'?'Physics':null;
-    if(type==='Test Series'){document.querySelector('#test-generator').scrollIntoView({behavior:'smooth'});return;}
-    if(subject){const match=liveSubjects.find(x=>x.subject_name.toLowerCase().includes(subject.toLowerCase()));if(match){$('liveSubjectSelect').value=match.id;loadChapters(match.id);}document.querySelector('#live-material-browser').scrollIntoView({behavior:'smooth'});}
-}
-// Navbar account control
-(function(){const nav=document.querySelector('#navbarNav .navbar-nav');if(nav){const li=document.createElement('li');li.className='nav-item';li.innerHTML='<button id="accountNav" type="button" class="btn btn-outline-light btn-sm ms-lg-2 login-pill">Login</button>';nav.appendChild(li);$('accountNav').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeMobileNav();setTimeout(()=>showAccount(),180);});}updateAccountButton();})();
-$('testClass').addEventListener('change',async e=>{const c=liveClasses.find(x=>x.class_number===Number(e.target.value));if(c){$('liveClassSelect').value=c.id;await loadSubjects(c.id);}});
-$('testSubject').addEventListener('change',()=>{const s=liveSubjects.find(x=>x.subject_name.toLowerCase().includes($('testSubject').value.toLowerCase()));if(s)loadChapters(s.id);});
-document.getElementById('year').textContent=new Date().getFullYear();
-setTimeout(initGoogle,1200);setInterval(initGoogle,3000);
-// Existing class filters
-const filterButtons=document.querySelectorAll('.filter-btn'), materialCards=document.querySelectorAll('.material-card');
-function filterMaterials(classNumber){materialCards.forEach(card=>{const classes=card.dataset.classes.split(',');card.classList.toggle('hidden',classNumber!=='all'&&!classes.includes(classNumber));});filterButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.filter===classNumber));}
-filterButtons.forEach(button=>button.addEventListener('click',()=>filterMaterials(button.dataset.filter)));
-document.querySelectorAll('.class-link').forEach(link=>link.addEventListener('click',async()=>{const selectedClass=link.dataset.class;filterMaterials(selectedClass);const c=liveClasses.find(x=>x.class_number===Number(selectedClass));if(c){$('liveClassSelect').value=c.id;await loadSubjects(c.id);}}));
-loadLiveCatalog();
-
-// ===== Galaxy + Solar System visual engine =====
-(()=>{
- const c=document.getElementById('spaceCanvas'); if(!c)return; const ctx=c.getContext('2d');
- let W=0,H=0,DPR=1,stars=[],planets=[];
- const rand=(a,b)=>a+Math.random()*(b-a);
- function resize(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0);stars=Array.from({length:Math.min(520,Math.floor(W*H/3000))},()=>({x:Math.random()*W,y:Math.random()*H,r:rand(.25,1.7),a:rand(.2,.9),p:rand(0,Math.PI*2)}));planets=[{r:Math.min(W,H)*.10,d:Math.min(W,H)*.20,s:rand(.00018,.00028),size:4},{r:Math.min(W,H)*.17,d:Math.min(W,H)*.31,s:-.00012,size:6},{r:Math.min(W,H)*.25,d:Math.min(W,H)*.43,s:.00008,size:9}];}
- function draw(t){ctx.clearRect(0,0,W,H); const cx=W*.52,cy=H*.47;
-  const neb=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*.55);neb.addColorStop(0,'rgba(90,120,255,.12)');neb.addColorStop(.35,'rgba(130,60,255,.07)');neb.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=neb;ctx.fillRect(0,0,W,H);
-  for(const q of stars){const tw=.55+.45*Math.sin(t*.0015+q.p);ctx.globalAlpha=q.a*tw;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(q.x,q.y,q.r,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
-  ctx.strokeStyle='rgba(99,247,255,.10)';ctx.lineWidth=1;
-  for(const p of planets){ctx.beginPath();ctx.ellipse(cx,cy,p.d,p.d*.32,Math.PI*.05,0,Math.PI*2);ctx.stroke();}
-  const sun=ctx.createRadialGradient(cx-3,cy-3,1,cx,cy,18);sun.addColorStop(0,'#fff');sun.addColorStop(.3,'#63f7ff');sun.addColorStop(1,'rgba(99,247,255,0)');ctx.fillStyle=sun;ctx.beginPath();ctx.arc(cx,cy,22,0,Math.PI*2);ctx.fill();
-  planets.forEach((p,i)=>{const a=t*p.s*(i%2?1:-1)+i*2;const x=cx+Math.cos(a)*p.d,y=cy+Math.sin(a)*p.d*.32;const g=ctx.createRadialGradient(x-2,y-2,1,x,y,p.size+2);g.addColorStop(0,'#fff');g.addColorStop(.25,i===1?'#a78bfa':'#63f7ff');g.addColorStop(1,'rgba(70,90,255,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,p.size+2,0,Math.PI*2);ctx.fill();});
-  requestAnimationFrame(draw);
- }
- addEventListener('resize',resize,{passive:true});resize();requestAnimationFrame(draw);
-})();
-// Dynamic Island live clock/status
-(()=>{const label=document.getElementById('islandLabel'),time=document.getElementById('islandTime'); if(!label)return; const tick=()=>{time.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}; tick();setInterval(tick,1000); const states=['Aditya Library','Study Mode','Live Classes','Secure Learning'];let i=0;setInterval(()=>{i=(i+1)%states.length;label.style.opacity='0';setTimeout(()=>{label.textContent=states[i];label.style.opacity='.86'},180)},4200);})();
-// Add subtle rotating icon treatment to feature/action icons without changing functionality
-window.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.icon-circle, .feature-box .bi').forEach((el,i)=>{if(!el.classList.contains('rotating-icon'))el.classList.add('rotating-icon');if(i%3===0)el.classList.add('spin')}); const brand=document.querySelector('.navbar-brand'); if(brand) brand.classList.remove('rotating-icon','spin');});
-
-// Close the mobile navigation menu after selecting a page.
-document.addEventListener('DOMContentLoaded',()=>{
-  const navCollapse=document.getElementById('navbarNav');
-  if(!navCollapse || !window.bootstrap)return;
-  navCollapse.querySelectorAll('.nav-link').forEach(link=>{
-    link.addEventListener('click',closeMobileNav);
-  });
-});
-</script>
 
 </body>
 </html>

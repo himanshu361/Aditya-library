@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 from app.api import admin_router, auth_router, chapters_router, classes_router, notes_router, payments_router, quizzes_router, users_router
 from app.auth import hash_password
@@ -430,6 +433,14 @@ def health_check():
     return {"status": "ok", "service": "aditya-tuition-centre"}
 
 
+FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
+
+
 @app.get("/")
 def root():
+    return FileResponse(FRONTEND_DIR / "index.html")
+
+
+@app.get("/api")
+def api_root():
     return {"message": "Aditya Tuition Centre API", "docs": "/docs"}
